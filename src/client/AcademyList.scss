@@ -1,0 +1,41 @@
+.academyList {
+  margin-top: 50px;
+  width: 80%;
+  min-height: 253px;
+  padding: 25px 0 25px 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .academy {
+    background-color: #8B8D8F;
+    color: white;
+    width: 95%;
+    min-height: 200px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 0 25px 0;
+
+    .image {
+      width: 30%;
+
+      .rate {
+        width: 50px;
+        height: 30px;
+        font-size: 25px;
+        color: black;
+      }
+    }
+
+    .details {
+      padding: 4%;
+      width: 66%;
+
+      .name {
+        font-size: 30px;
+      }
+    }
+  }
+}

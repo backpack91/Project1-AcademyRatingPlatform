@@ -1,0 +1,69 @@
+.header {
+  width: 100%;
+  position: relative;
+
+  .navigatorWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 69px;
+    background-color: black;
+
+    .logo {
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 20%;
+      // height: 100%;
+    }
+  }
+
+  .navigator {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .imageBenner {
+    background-color: yellow;
+    background-size: cover;
+    width: 100%;
+    height: 300px;
+    background-image: url('../../public/img/studentsCloseup.png');
+
+    h1 {
+      text-align: right;
+      margin: 0;
+      color: white;
+      font-size: 70px;
+      padding: 10px 10% 10px 10%;
+    }
+  }
+
+  .inputWrapper {
+    position: absolute;
+    bottom: -25px;
+    left: 10%;
+    width: 80%;
+    height: 50px;
+
+    i {
+      font-size: 30px;
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      color: black;
+    }
+
+    input {
+      width: 92%;
+      height: 100%;
+      padding: 0 0 0 8%;
+      font-size: 30px;
+    }
+  }
+}
