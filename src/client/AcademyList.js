@@ -20,13 +20,13 @@ class AcademyList extends Component {
       return (
         <div className="academy" key={item.id}>
           <div className="image" style={image}>
-            <div className="rate">{item.rate}점</div>
+            <div className="rate">{item.rate}</div>
           </div>
           <div className="details">
             <div className="name">{item.name}</div>
-            <div className="category">{item.category}</div>
-            <div className="description">{item.description}</div>
-            <div className="best_comment">{item.best_comment}</div>
+            <div className="category">분류: {item.category}</div>
+            <div className="description">소개: {item.description}</div>
+            <div className="best_comment">베스트 댓글: {item.best_comment}</div>
           </div>
         </div>
       );

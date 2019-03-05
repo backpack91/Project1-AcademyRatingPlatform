@@ -8,6 +8,7 @@ class Header extends Component {
   }
 
   render () {
+    console.log('this.props: ', this.props)
     return (
       <div className="header">
         <div className="navigatorWrapper">
@@ -16,7 +17,7 @@ class Header extends Component {
             <div>당나귀귀</div>
           </div>
           <div className="navigator">
-            <div>로그인</div>
+            <div onClick={this.props.onClickLogin}>로그인</div>
           </div>
         </div>
         <div className="imageBenner" >

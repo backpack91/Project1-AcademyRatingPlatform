@@ -17,6 +17,7 @@
       align-items: flex-start;
       width: 20%;
       // height: 100%;
+      cursor: pointer;
     }
   }
 
@@ -26,6 +27,10 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    div {
+      cursor: pointer;
+    }
   }
 
   .imageBenner {
@@ -40,7 +45,7 @@
       margin: 0;
       color: white;
       font-size: 70px;
-      padding: 10px 10% 10px 10%;
+      padding: 10px 10% 0 0;
     }
   }
 
