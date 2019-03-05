@@ -7,16 +7,14 @@ class LoginModal extends Component {
   constructor(props) {
     super(props);
 
-    this.logInWithGoogle = this.logInWithGoogle.bind(this);
-    this.signUpWithGoogle = this.signUpWithGoogle.bind(this);
+    this.logInWithFacebook = this.logInWithFacebook.bind(this);
+    this.signUpWithFacebook = this.signUpWithFacebook.bind(this);
   }
 
   componentDidMount () {
-
-
   }
 
-  logInWithGoogle() {
+  logInWithFacebook() {
     firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
@@ -37,7 +35,7 @@ class LoginModal extends Component {
     });
   }
 
-  signUpWithGoogle() {
+  signUpWithFacebook() {
     firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
@@ -65,6 +63,7 @@ class LoginModal extends Component {
     return (
       <div className="loginModalWrapper" style={modalBackgroundHeight}>
         <div className="loginModal">
+          <i onClick={this.props.closeLoginModal} className="fas fa-times"></i>
           <div className="logo">
             <div>
               원장님귀는
@@ -77,13 +76,13 @@ class LoginModal extends Component {
             <div>
               로그인하기
             </div>
-            <div className="facebookAccountBtn" onClick={this.logInWithGoogle}>
+            <div className="facebookAccountBtn" onClick={this.logInWithFacebook}>
               facebook계정으로 로그인하기
             </div>
             <div>
               회원가입하기
             </div>
-            <div className="facebookAccountBtn" onClick={this.signUpWithGoogle}>
+            <div className="facebookAccountBtn" onClick={this.signUpWithFacebook}>
               facebook계정으로 가입하기
             </div>
             <div className="nextBtn">

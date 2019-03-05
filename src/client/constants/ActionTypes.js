@@ -1,0 +1,5 @@
+export const GET_LOGGED_IN = 'USER_LOG_IN';
+export const GET_LOGGED_OUT = 'USER_LOG_OUT';
+export const SHOW_ALL_FEEDS = 'SHOW_ALL_FEEDS';
+export const SHOW_UP_LOGIN_MODAL = 'SHOW_UP_LOGIN_MODAL';
+export const CLOSE_LOGIN_MODAL = 'CLOSE_LOGIN_MODAL';
