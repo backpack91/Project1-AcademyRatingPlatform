@@ -5,19 +5,31 @@ const initialStates = {
   onLogin: false,
   token: '',
   user: {},
-  isModalShownUp: false
+  isModalShownUp: false,
+  modalTitle: ''
 };
 
 export default function auth (state = initialStates, action) {
   switch (action.type) {
-    case types.SHOW_UP_LOGIN_MODAL:
+    case types.SHOW_UP_AUTH_MODAL:
       return {
-        isModalShownUp: true
+        ...state,
+        isModalShownUp: true,
+        modalTitle: action.modalTitle
       }
 
-      case types.CLOSE_LOGIN_MODAL:
+    case types.SHOW_UP_RECEIPT_SUBMISSION_MODAL:
+      return {
+        ...state,
+        isModalShownUp: true,
+        modalTitle: action.modalTitle
+      }
+
+      case types.CLOSE_MODAL:
         return {
-          isModalShownUp: false
+          ...state,
+          isModalShownUp: false,
+          modalTitle: ''
         };
 
     default:

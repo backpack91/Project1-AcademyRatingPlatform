@@ -15,7 +15,7 @@ import 'firebase/auth';
 
   provider.addScope('user_birthday');
   firebase.auth().languageCode = 'en';
-  
+
   provider.setCustomParameters({
   'display': 'popup'
   });

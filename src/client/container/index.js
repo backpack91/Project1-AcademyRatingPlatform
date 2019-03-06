@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getLoggedIn, showAllFeeds, showUpLoginModal, closeLoginModal} from '../actions';
+import {
+  getLoggedIn,
+  showAllFeeds,
+  showUpAuthModal,
+  closeModal,
+  showUpReceiptSubmissionModal
+} from '../actions';
 import App from '../components/App.js';
 import axios from 'axios';
 
@@ -23,7 +29,8 @@ const mapStateToProps = (state) => {
   console.log("mapStateToProps_State: ", state);
   return {
     currentList: state.academyList.currentList,
-    isModalShownUp: state.auth.isModalShownUp
+    isModalShownUp: state.auth.isModalShownUp,
+    modalTitle: state.auth.modalTitle
   }
 }
 
@@ -39,11 +46,14 @@ const mapDispatchToProps = (dispatch) => {
         console.log(err);
       })
     },
-    showUpLoginModal: () => {
-      dispatch(showUpLoginModal());
+    showUpAuthModal: () => {
+      dispatch(showUpAuthModal());
     },
-    closeLoginModal: () => {
-      dispatch(closeLoginModal());
+    closeModal: () => {
+      dispatch(closeModal());
+    },
+    showUpReceiptSubmissionModal: () => {
+      dispatch(showUpReceiptSubmissionModal());
     }
   }
 }

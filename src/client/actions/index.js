@@ -1,14 +1,22 @@
 import * as types from '../constants/ActionTypes';
 
-export function showUpLoginModal () {
+export function showUpAuthModal () {
   return {
-    type: types.SHOW_UP_LOGIN_MODAL
+    type: types.SHOW_UP_AUTH_MODAL,
+    modalTitle: 'Auth'
   };
 }
 
-export function closeLoginModal () {
+export function showUpReceiptSubmissionModal () {
   return {
-    type: types.CLOSE_LOGIN_MODAL
+    type: types.SHOW_UP_RECEIPT_SUBMISSION_MODAL,
+    modalTitle: 'ReceiptSubmission'
+  };
+}
+
+export function closeModal () {
+  return {
+    type: types.CLOSE_MODAL
   };
 }
 

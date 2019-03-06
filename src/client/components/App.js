@@ -2,7 +2,10 @@ import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import Header from "./Header.js";
 import AcademyList from "./AcademyList.js";
-import LoginModal from './LoginModal.js';
+import AuthModal from './AuthModal.js';
+import Modal from './Modal.js';
+import AuthRequestCompletionModal from './AuthRequestCompletionModal.js';
+import ReceiptSubmissionModal from './ReceiptSubmissionModal.js';
 import "./App.scss";
 
 class App extends Component {
@@ -15,6 +18,7 @@ class App extends Component {
 
     this.onClickLogin = this.onClickLogin.bind(this);
     this.onClickModalDeleteBtn = this.onClickModalDeleteBtn.bind(this);
+    this.renderModal = this.renderModal.bind(this);
   }
 
   onClickLogin() {
@@ -47,13 +51,32 @@ class App extends Component {
     console.log("APP Props => ", this.props);
   }
 
+  renderModal () {
+    switch(this.props.appState.modalTitle) {
+      case 'Auth':
+        return <AuthModal showUpReceiptSubmissionModal={this.props.appState.showUpReceiptSubmissionModal}/>
+
+      case 'ReceiptSubmission':
+        return <ReceiptSubmissionModal />
+
+      case 'AuthRequestCompletion':
+        return <AuthRequestCompletionModal />
+    }
+  }
+
   render () {
     return (
       <Router>
         <div className="appWrapper">
-          <Header showUpLoginModal={this.props.appState.showUpLoginModal}/>
+          <Header showUpAuthModal={this.props.appState.showUpAuthModal}/>
           <AcademyList academyList={this.props.appState.currentList}/>
-          {this.props.appState.isModalShownUp ? <LoginModal closeLoginModal={this.props.appState.closeLoginModal} /> : null}
+          {this.props.appState.isModalShownUp
+            ? <Modal closeModal={this.props.appState.closeModal} >
+                {this.props.appState.modalTitle === 'Auth' ? <AuthModal showUpReceiptSubmissionModal={this.props.appState.showUpReceiptSubmissionModal}/> : null}
+                {this.props.appState.modalTitle === 'ReceiptSubmission' ? <ReceiptSubmissionModal /> : null}
+                {this.props.appState.modalTitle === 'AuthRequestCompletion' ? <AuthRequestCompletionModal /> : null}
+              </Modal>
+            : null}
         </div>
       </Router>
     );

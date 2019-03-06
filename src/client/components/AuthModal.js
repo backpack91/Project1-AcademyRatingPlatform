@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from "react";
-import "./LoginModal.scss";
+import "./AuthModal.scss";
 import { firebase, provider } from './firebaseConfig.js';
 // import SocialLogin from 'react-social-login'
 
-class LoginModal extends Component {
+class AuthModal extends Component {
   constructor(props) {
     super(props);
 
@@ -60,39 +60,38 @@ class LoginModal extends Component {
       height: document.body.clientHeight
     }
 
+    console.log('Auth Modal props => ', this.props);
+
     return (
-      <div className="loginModalWrapper" style={modalBackgroundHeight}>
-        <div className="loginModal">
-          <i onClick={this.props.closeLoginModal} className="fas fa-times"></i>
-          <div className="logo">
-            <div>
-              원장님귀는
-            </div>
-            <div>
-              당나귀귀
-            </div>
+      <Fragment>
+        <div className="logo">
+          <div>
+            원장님귀는
           </div>
-          <div className="loginOptionWrapper">
-            <div>
-              로그인하기
-            </div>
-            <div className="facebookAccountBtn" onClick={this.logInWithFacebook}>
-              facebook계정으로 로그인하기
-            </div>
-            <div>
-              회원가입하기
-            </div>
-            <div className="facebookAccountBtn" onClick={this.signUpWithFacebook}>
-              facebook계정으로 가입하기
-            </div>
-            <div className="nextBtn">
-              <button>다음</button>
-            </div>
+          <div>
+            당나귀귀
           </div>
         </div>
-      </div>
+        <div className="loginOptionWrapper">
+          <div>
+            로그인하기
+          </div>
+          <div className="facebookAccountBtn" onClick={this.logInWithFacebook}>
+            facebook계정으로 로그인하기
+          </div>
+          <div>
+            회원가입하기
+          </div>
+          <div className="facebookAccountBtn" onClick={this.signUpWithFacebook}>
+            facebook계정으로 가입하기
+          </div>
+          <div className="nextBtn">
+            <button onClick={this.props.showUpReceiptSubmissionModal}>다음</button>
+          </div>
+        </div>
+      </Fragment>
     );
   }
 }
 
-export default LoginModal;
+export default AuthModal;

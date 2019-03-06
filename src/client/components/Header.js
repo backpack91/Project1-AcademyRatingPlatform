@@ -17,7 +17,7 @@ class Header extends Component {
             <div>당나귀귀</div>
           </div>
           <div className="navigator">
-            <div onClick={this.props.showUpLoginModal}>로그인</div>
+            <div onClick={this.props.showUpAuthModal}>로그인</div>
           </div>
         </div>
         <div className="imageBenner" >
