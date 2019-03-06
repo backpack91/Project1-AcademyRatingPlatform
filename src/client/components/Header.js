@@ -1,14 +1,8 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import "./Header.scss";
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state={};
-  }
-
   render () {
-    console.log('this.props in Header: ', this.props)
     return (
       <div className="header">
         <div className="navigatorWrapper">
@@ -17,7 +11,7 @@ class Header extends Component {
             <div>당나귀귀</div>
           </div>
           <div className="navigator">
-            <div onClick={this.props.showUpAuthModal}>로그인</div>
+            <div onClick={this.props.showUpLoginForm}>로그인</div>
           </div>
         </div>
         <div className="imageBenner" >

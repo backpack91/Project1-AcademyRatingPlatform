@@ -1,21 +1,19 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import "./Modal.scss";
 
 class Modal extends Component {
-  constructor(props) {
-    super(props);
-
+  componentDidMount() {
+    document.body.classList.add('fixScroll');
   }
 
-  componentDidMount () {
+  componentWillUnmount() {
+    document.body.classList.remove('fixScroll');
   }
 
-  render () {
+  render() {
     const modalBackgroundHeight = {
       height: document.body.clientHeight
-    }
-
-    console.log('modal children =>', this.props.children);
+    };
 
     return (
       <div className="modalWrapper" style={modalBackgroundHeight}>

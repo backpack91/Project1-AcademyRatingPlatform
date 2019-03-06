@@ -1,33 +1,33 @@
 import * as types from '../constants/ActionTypes';
 
-export function showUpAuthModal () {
+export function showUpLoginForm() {
   return {
-    type: types.SHOW_UP_AUTH_MODAL,
-    modalTitle: 'Auth'
+    type: types.SHOW_UP_LOGIN_FORM,
+    modalTitle: 'LoginForm'
   };
 }
 
-export function showUpReceiptSubmissionModal () {
+export function showUpReceiptSubmissionForm() {
   return {
-    type: types.SHOW_UP_RECEIPT_SUBMISSION_MODAL,
-    modalTitle: 'ReceiptSubmission'
+    type: types.SHOW_UP_RECEIPT_SUBMISSION_FORM,
+    modalTitle: 'ReceiptSubmissionForm'
   };
 }
 
-export function showUpAuthRequestCompletionModal () {
+export function showUpAuthRequestCompletionNotice() {
   return {
-    type: types.SHOW_UP_AUTH_REQUEST_COMPLETION_MODAL,
-    modalTitle: 'AuthRequestCompletion'
+    type: types.SHOW_UP_AUTH_REQUEST_COMPLETION_NOTICE,
+    modalTitle: 'AuthRequestCompletionNotice'
   };
 }
 
-export function closeModal () {
+export function closeModal() {
   return {
     type: types.CLOSE_MODAL
   };
 }
 
-export function getLoggedIn (loginInfos) {
+export function getLoggedIn(loginInfos) {
   return {
     type: types.USER_LOG_IN,
     id: loginInfos.token,
@@ -35,7 +35,7 @@ export function getLoggedIn (loginInfos) {
   };
 }
 
-export function showAllFeeds (feedList) {
+export function showAllFeeds(feedList) {
   return {
     type: types.SHOW_ALL_FEEDS,
     list: feedList.data

@@ -1,16 +1,14 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import "./AcademyList.scss";
 
 class AcademyList extends Component {
   constructor(props) {
     super(props);
-    this.state={
-    };
+
     this.renderList = this.renderList.bind(this);
   }
 
   renderList () {
-
     return this.props.academyList.map(item => {
       const image = {
         backgroundImage: `url(${item.image})`,
@@ -34,7 +32,6 @@ class AcademyList extends Component {
   }
 
   render () {
-    console.log("props: ", this.props)
     return (
       <div className="academyList">
         {this.props.academyList.length ? this.renderList() : "정보가 없습니다..."}

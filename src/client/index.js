@@ -6,6 +6,7 @@ import logger from 'redux-logger';
 import reducers from './reducers';
 import Container from './container';
 import App from './components/App';
+import './index.scss';
 
 const store = createStore(reducers, applyMiddleware(logger));
 

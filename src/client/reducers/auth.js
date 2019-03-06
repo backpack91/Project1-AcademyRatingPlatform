@@ -1,5 +1,4 @@
 import * as types from '../constants/ActionTypes';
-// import _ from 'lodash';
 
 const initialStates = {
   onLogin: false,
@@ -11,33 +10,33 @@ const initialStates = {
 
 export default function auth (state = initialStates, action) {
   switch (action.type) {
-    case types.SHOW_UP_AUTH_MODAL:
+    case types.SHOW_UP_LOGIN_FORM:
       return {
         ...state,
         isModalShownUp: true,
         modalTitle: action.modalTitle
-      }
+      };
 
-    case types.SHOW_UP_RECEIPT_SUBMISSION_MODAL:
+    case types.SHOW_UP_RECEIPT_SUBMISSION_FORM:
       return {
         ...state,
         isModalShownUp: true,
         modalTitle: action.modalTitle
-      }
+      };
 
-    case types.SHOW_UP_AUTH_REQUEST_COMPLETION_MODAL:
+    case types.SHOW_UP_AUTH_REQUEST_COMPLETION_NOTICE:
       return {
         ...state,
         isModalShownUp: true,
         modalTitle: action.modalTitle
-      }
+      };
 
-      case types.CLOSE_MODAL:
-        return {
-          ...state,
-          isModalShownUp: false,
-          modalTitle: ''
-        };
+    case types.CLOSE_MODAL:
+      return {
+        ...state,
+        isModalShownUp: false,
+        modalTitle: ''
+      };
 
     default:
       return state;

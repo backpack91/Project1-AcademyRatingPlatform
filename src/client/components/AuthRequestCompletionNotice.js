@@ -1,16 +1,7 @@
-import React, {Component, Fragment} from "react";
-import "./AuthRequestCompletionModal.scss";
-// import { firebase, provider } from './firebaseConfig.js';
-// import SocialLogin from 'react-social-login'
+import React, {Component} from "react";
+import "./AuthRequestCompletionNotice.scss";
 
 class AuthRequestCompletionModal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount () {
-  }
-
   render () {
     const modalBackgroundHeight = {
       height: document.body.clientHeight
@@ -31,7 +22,7 @@ class AuthRequestCompletionModal extends Component {
           <p>회원가입 승인까지 1-2일 정도 소요될 수 있습니다</p>
           <p>가입 승인 후 부터 학원등록과 후기남기기가 가능하니 양해 부탁드립니다</p>
           <div className="submitBtn">
-            <button onClick={this.props.showUpAuthRequestCompletionModal}>확인</button>
+            <button onClick={this.props.closeModal}>확인</button>
           </div>
         </div>
       </div>
