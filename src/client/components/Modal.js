@@ -18,8 +18,8 @@ class Modal extends Component {
     console.log('modal children =>', this.props.children);
 
     return (
-      <div className="loginModalWrapper" style={modalBackgroundHeight}>
-        <div className="loginModal">
+      <div className="modalWrapper" style={modalBackgroundHeight}>
+        <div className="modalBasicContents">
           <i onClick={this.props.closeModal} className="fas fa-times"></i>
           {this.props.children}
         </div>

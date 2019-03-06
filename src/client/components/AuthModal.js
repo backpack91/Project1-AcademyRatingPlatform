@@ -64,29 +64,31 @@ class AuthModal extends Component {
 
     return (
       <Fragment>
-        <div className="logo">
-          <div>
-            원장님귀는
+        <div className="authModalContents">
+          <div className="logo">
+            <div>
+              원장님귀는
+            </div>
+            <div>
+              당나귀귀
+            </div>
           </div>
-          <div>
-            당나귀귀
-          </div>
-        </div>
-        <div className="loginOptionWrapper">
-          <div>
-            로그인하기
-          </div>
-          <div className="facebookAccountBtn" onClick={this.logInWithFacebook}>
-            facebook계정으로 로그인하기
-          </div>
-          <div>
-            회원가입하기
-          </div>
-          <div className="facebookAccountBtn" onClick={this.signUpWithFacebook}>
-            facebook계정으로 가입하기
-          </div>
-          <div className="nextBtn">
-            <button onClick={this.props.showUpReceiptSubmissionModal}>다음</button>
+          <div className="loginOptionWrapper">
+            <div>
+              로그인하기
+            </div>
+            <div className="facebookAccountBtn" onClick={this.logInWithFacebook}>
+              facebook계정으로 로그인하기
+            </div>
+            <div>
+              회원가입하기
+            </div>
+            <div className="facebookAccountBtn" onClick={this.signUpWithFacebook}>
+              facebook계정으로 가입하기
+            </div>
+            <div className="nextBtn">
+              <button onClick={this.props.showUpReceiptSubmissionModal}>다음</button>
+            </div>
           </div>
         </div>
       </Fragment>

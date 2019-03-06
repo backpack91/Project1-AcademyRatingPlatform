@@ -14,6 +14,13 @@ export function showUpReceiptSubmissionModal () {
   };
 }
 
+export function showUpAuthRequestCompletionModal () {
+  return {
+    type: types.SHOW_UP_AUTH_REQUEST_COMPLETION_MODAL,
+    modalTitle: 'AuthRequestCompletion'
+  };
+}
+
 export function closeModal () {
   return {
     type: types.CLOSE_MODAL

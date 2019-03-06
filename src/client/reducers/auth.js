@@ -25,6 +25,13 @@ export default function auth (state = initialStates, action) {
         modalTitle: action.modalTitle
       }
 
+    case types.SHOW_UP_AUTH_REQUEST_COMPLETION_MODAL:
+      return {
+        ...state,
+        isModalShownUp: true,
+        modalTitle: action.modalTitle
+      }
+
       case types.CLOSE_MODAL:
         return {
           ...state,

@@ -73,7 +73,7 @@ class App extends Component {
           {this.props.appState.isModalShownUp
             ? <Modal closeModal={this.props.appState.closeModal} >
                 {this.props.appState.modalTitle === 'Auth' ? <AuthModal showUpReceiptSubmissionModal={this.props.appState.showUpReceiptSubmissionModal}/> : null}
-                {this.props.appState.modalTitle === 'ReceiptSubmission' ? <ReceiptSubmissionModal /> : null}
+                {this.props.appState.modalTitle === 'ReceiptSubmission' ? <ReceiptSubmissionModal showUpAuthRequestCompletionModal={this.props.appState.showUpAuthRequestCompletionModal}/> : null}
                 {this.props.appState.modalTitle === 'AuthRequestCompletion' ? <AuthRequestCompletionModal /> : null}
               </Modal>
             : null}

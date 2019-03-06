@@ -1,4 +1,4 @@
-.loginModalWrapper {
+.modalWrapper {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
 
-  .loginModal {
+  .modalBasicContents {
     position: relative;
     color: gray;
     width: 30rem;
@@ -23,5 +23,5 @@
       top: 1rem;
       right: 1rem;
     }
-  }  
+  }
 }

@@ -5,7 +5,8 @@ import {
   showAllFeeds,
   showUpAuthModal,
   closeModal,
-  showUpReceiptSubmissionModal
+  showUpReceiptSubmissionModal,
+  showUpAuthRequestCompletionModal
 } from '../actions';
 import App from '../components/App.js';
 import axios from 'axios';
@@ -54,6 +55,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     showUpReceiptSubmissionModal: () => {
       dispatch(showUpReceiptSubmissionModal());
+    },
+    showUpAuthRequestCompletionModal: () => {
+      dispatch(showUpAuthRequestCompletionModal());
     }
   }
 }
