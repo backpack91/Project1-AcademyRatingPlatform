@@ -16,7 +16,8 @@ class AuthModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
+    console.log('photoInfo: ', this.state);
+    this.props.submitReceiptPhoto(this.state.file, this.state.imagePreviewUrl);
     this.props.showUpAuthRequestCompletionModal();
   }
 
@@ -25,6 +26,8 @@ class AuthModal extends Component {
     const reader = new FileReader();
     const file = e.target.files[0];
 
+    console.log('file: ', file);
+      
     if (
       file &&
       (file.type === 'image/jpeg' ||

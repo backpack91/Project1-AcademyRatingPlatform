@@ -9,15 +9,15 @@
     "course": [
       {
         "name" : "prep",
-        "description" : "왕초보들 돈만들고와랏~~~~"
+        "description" : "기초과정"
       },
       {
         "name" : "bootcamp",
-        "description" : "단명크리.. 감당하실수 있겠습니까..?"
+        "description" : "심화과정"
       }
     ],
     "rate": 5.0,
-    "best_comment": "뎡말뎡말 날씬한 켄님!!!!!"
+    "best_comment": "바닐라코딩 짱짱 좋아요!"
   },
   {
     "id": "2",
@@ -29,15 +29,15 @@
     "course": [
       {
         "name" : "prep",
-        "description" : "왕초보들 돈만들고와랏~~~~"
+        "description" : "기초과정"
       },
       {
         "name" : "bootcamp",
-        "description" : "단명크리.. 감당하실수 있겠습니까..?"
+        "description" : "심화과정"
       }
     ],
     "rate": 5.0,
-    "best_comment": "뎡말뎡말 날씬한 켄님!!!!!"
+    "best_comment": "바닐라코딩 짱짱 좋아요!"
   },
   {
     "id": "3",
@@ -49,14 +49,14 @@
     "course": [
       {
         "name" : "prep",
-        "description" : "왕초보들 돈만들고와랏~~~~"
+        "description" : "기초과정"
       },
       {
         "name" : "bootcamp",
-        "description" : "단명크리.. 감당하실수 있겠습니까..?"
+        "description" : "심화과정"
       }
     ],
     "rate": 5.0,
-    "best_comment": "뎡말뎡말 날씬한 켄님!!!!!"
+    "best_comment": "바닐라코딩 짱짱 좋아요!"
   }
 ]

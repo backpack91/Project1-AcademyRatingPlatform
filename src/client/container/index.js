@@ -11,7 +11,6 @@ import {
 import App from '../components/App.js';
 import axios from 'axios';
 
-
 class AppContainer extends Component {
   componentDidMount() {
     this.props.onMount();
@@ -35,7 +34,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onMount: () => {
-      axios.get('../../../public/dummy.json')
+      axios.get('api/academies')
       .then(res => {
         dispatch(showAllFeeds(res));
       })
