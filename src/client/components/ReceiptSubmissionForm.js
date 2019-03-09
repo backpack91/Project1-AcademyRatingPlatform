@@ -1,3 +1,4 @@
+
 import React, {Component} from "react";
 import "./ReceiptSubmissionForm.scss";
 
@@ -15,9 +16,25 @@ class AuthModal extends Component {
   }
 
   handleSubmit(e) {
+    const that = this;
     e.preventDefault();
-    console.log('photoInfo: ', this.state);
-    this.props.submitReceiptPhoto(this.state.file, this.state.imagePreviewUrl);
+    const { uid, displayName, email } = this.props.user;
+    const xhr = new XMLHttpRequest();
+    const formData = new FormData();
+
+    formData.append('receipt_image', this.state.file);
+
+    xhr.onload = function() {
+      if (xhr.status === 200 || xhr.status === 201) {
+        console.log(xhr.responseText);
+        that.props.requestNewMemberRegistration();
+      } else {
+        console.error(xhr.responseText);
+      }
+    };
+    xhr.open('POST', `api/users/new/receipt-photo?uid=${uid}`);
+    xhr.send(formData);
+
     this.props.showUpAuthRequestCompletionModal();
   }
 
@@ -26,8 +43,6 @@ class AuthModal extends Component {
     const reader = new FileReader();
     const file = e.target.files[0];
 
-    console.log('file: ', file);
-      
     if (
       file &&
       (file.type === 'image/jpeg' ||
@@ -86,7 +101,7 @@ class AuthModal extends Component {
             {$imagePreview}
             {this.state.onAlert ? this.renderAlertFileType() : null}
           </div>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} action='api/users/new/receipt-photo' method='post'>
             <input className="fileInput"
               type="file"
               onChange={this.handleImageChange} />

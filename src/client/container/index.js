@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import App from '../components/App.js';
+import axios from 'axios';
 import {
   getLoggedIn,
   showAllFeeds,
   showUpLoginForm,
   closeModal,
   showUpReceiptSubmissionForm,
-  showUpAuthRequestCompletionNotice
+  showUpAuthRequestCompletionNotice,
+  alreadyRegisteredUserNotice
 } from '../actions';
-import App from '../components/App.js';
-import axios from 'axios';
 
 class AppContainer extends Component {
   componentDidMount() {
@@ -53,6 +54,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     showUpAuthRequestCompletionNotice: () => {
       dispatch(showUpAuthRequestCompletionNotice());
+    },
+    noticeUserAlreadyRegistered: () => {
+      dispatch(alreadyRegisteredUserNotice());
     }
   };
 };

@@ -34,7 +34,7 @@ class AcademyList extends Component {
   render () {
     return (
       <div className="academyList">
-        {this.props.academyList.length ? this.renderList() : "정보가 없습니다..."}
+        {this.props.academyList.length ? this.renderList() : "저장된 정보가 없습니다..."}
       </div>
     );
   }

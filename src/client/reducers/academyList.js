@@ -1,4 +1,6 @@
-import * as types from '../constants/ActionTypes';
+import {
+  SHOW_ALL_FEEDS
+} from '../constants/actionTypes';
 
 const initialStates = {
   currentList: {}
@@ -6,7 +8,7 @@ const initialStates = {
 
 export default function academyList (state = initialStates, action) {
   switch (action.type) {
-    case types.SHOW_ALL_FEEDS:
+    case SHOW_ALL_FEEDS:
       return {
         currentList: action.list
       };

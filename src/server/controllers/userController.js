@@ -1,29 +1,41 @@
 const User = require('../models/users.js');
+const bodyParser = require('body-parser');
+const validator = require("email-validator");
 
-let currentUserInfo;
+const checkMemberOrNot  = function (req, res, next) {
+  User.find( { facebook_id: req.body.facebook_id }, function(err, arr) {
+    if (err) { return console.error(err); }
+    if (arr.length) {
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(200);
+    }
+  });
+}
 
-const registerNewUser  = function (req, res, next) {
+const registerNewMember = function (req, res, next) {
+  const { receipt_image_url, facebook_id, name, image_profile } = req.body;
+  let email;
 
- const {displayName, email, photoURL, uid} = req.body.user;
+  if(validator.validate(req.body.email)) {
+    email = req.body.email;
+  } else {
+    email = '';
+  }
 
- User.find( {uid: req.body.user.uid}, function(err, arr) {
-   if (err) { console.log('error!!!!!!!') }
-   if (arr.length) {
-     console.log('this user is registered!', arr);
-     res.send('already_registered');
-   } else {
-     currentUserInfo = {
-       name: displayName,
-       email,
-       photo_url: photoURL,
-       uid: req.body.user.uid
-     };
-     console.log('this user is new ;)', arr);
-     res.send('this user is new');
-   }
- });
+  User.create({
+    receipt_image_url,
+    facebook_id,
+    email,
+    name,
+    image_profile
+  }, function (err, small) {
+    if (err) { return console.error(err); }
+    res.sendStatus(200);
+  });
 }
 
 module.exports = {
-  registerNewUser
+  checkMemberOrNot,
+  registerNewMember
 }

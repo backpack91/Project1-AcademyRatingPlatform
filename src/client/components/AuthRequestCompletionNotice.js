@@ -1,14 +1,14 @@
 import React, {Component} from "react";
 import "./AuthRequestCompletionNotice.scss";
 
-class AuthRequestCompletionModal extends Component {
+class AuthRequestCompletionNotice extends Component {
   render () {
     const modalBackgroundHeight = {
       height: document.body.clientHeight
     }
 
     return (
-      <div className="receiptSubmissionModalContents">
+      <div className="authRequestCompletionNoticeWrapper">
         <div className="modalTitle">
           <div>
             회원가입 요청이
@@ -30,4 +30,4 @@ class AuthRequestCompletionModal extends Component {
   }
 }
 
-export default AuthRequestCompletionModal;
+export default AuthRequestCompletionNotice;

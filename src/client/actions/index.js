@@ -1,35 +1,46 @@
-import * as types from '../constants/ActionTypes';
+import {
+  GET_LOGGED_IN,
+  GET_LOGGED_OUT,
+  SHOW_ALL_FEEDS,
+} from '../constants/actionTypes';
+import {
+  CLOSE_MODAL,
+  SHOW_UP_LOGIN_FORM,
+  SHOW_UP_RECEIPT_SUBMISSION_FORM,
+  SHOW_UP_AUTH_REQUEST_COMPLETION_NOTICE,
+  ALREADY_REGISTERED_USER_NOTICE
+} from '../constants/modalTypes';
 
 export function showUpLoginForm() {
   return {
-    type: types.SHOW_UP_LOGIN_FORM,
+    type: SHOW_UP_LOGIN_FORM,
     modalTitle: 'LoginForm'
   };
 }
 
 export function showUpReceiptSubmissionForm() {
   return {
-    type: types.SHOW_UP_RECEIPT_SUBMISSION_FORM,
+    type: SHOW_UP_RECEIPT_SUBMISSION_FORM,
     modalTitle: 'ReceiptSubmissionForm'
   };
 }
 
 export function showUpAuthRequestCompletionNotice() {
   return {
-    type: types.SHOW_UP_AUTH_REQUEST_COMPLETION_NOTICE,
+    type: SHOW_UP_AUTH_REQUEST_COMPLETION_NOTICE,
     modalTitle: 'AuthRequestCompletionNotice'
   };
 }
 
 export function closeModal() {
   return {
-    type: types.CLOSE_MODAL
+    type: CLOSE_MODAL
   };
 }
 
 export function getLoggedIn(loginInfos) {
   return {
-    type: types.USER_LOG_IN,
+    type: USER_LOG_IN,
     id: loginInfos.token,
     user: loginInfos.user
   };
@@ -37,7 +48,14 @@ export function getLoggedIn(loginInfos) {
 
 export function showAllFeeds(feedList) {
   return {
-    type: types.SHOW_ALL_FEEDS,
+    type: SHOW_ALL_FEEDS,
     list: feedList.data
+  };
+}
+
+export function alreadyRegisteredUserNotice() {
+  return {
+    type: ALREADY_REGISTERED_USER_NOTICE,
+    modalTitle: 'AlreadyRegisteredUserNotice'
   };
 }
