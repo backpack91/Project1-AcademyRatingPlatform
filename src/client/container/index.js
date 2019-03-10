@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import App from '../components/App.js';
 import axios from 'axios';
 import {
-  getLoggedIn,
+  userLogin,
   showAllFeeds,
   showUpLoginForm,
   closeModal,
   showUpReceiptSubmissionForm,
   showUpAuthRequestCompletionNotice,
+  registerRequiredNotice,
   alreadyRegisteredUserNotice
 } from '../actions';
 
@@ -25,10 +26,13 @@ class AppContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('auth state!!!!!!', state.auth);
   return {
     currentList: state.academyList.currentList,
     isModalShownUp: state.auth.isModalShownUp,
-    modalTitle: state.auth.modalTitle
+    modalTitle: state.auth.modalTitle,
+    access_token: state.auth.accessToken,
+    user: state.auth.user
   };
 };
 
@@ -57,6 +61,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     noticeUserAlreadyRegistered: () => {
       dispatch(alreadyRegisteredUserNotice());
+    },
+    noticeUserRegisterRequired: () => {
+      dispatch(registerRequiredNotice());
+    },
+    userLogin: (loginInfos) => {
+      dispatch(userLogin(loginInfos));
     }
   };
 };

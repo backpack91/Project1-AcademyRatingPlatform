@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { BrowserRouter as Router} from "react-router-dom";
 import { firebase, provider } from './../../services/firebaseConfig.js';
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 import Header from "./Header.js";
 import AcademyList from "./AcademyList.js";
 import LoginForm from './LoginForm.js';
@@ -9,9 +10,9 @@ import Modal from './Modal.js';
 import AuthRequestCompletionNotice from './AuthRequestCompletionNotice.js';
 import ReceiptSubmissionForm from './ReceiptSubmissionForm.js';
 import AlreadyRegisteredUserNotice from './AlreadyRegisteredUserNotice.js';
+import RegisterRequiredNotice from './RegisterRequiredNotice.js';
 import "./App.scss";
-
-
+import credentials from '../../server/config/credentials.js';
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class App extends Component {
 
     this.state = {
       user: {},
-      token: ''
+      access_token: ''
     }
 
     this.logInWithFacebook = this.logInWithFacebook.bind(this);
@@ -31,10 +32,29 @@ class App extends Component {
     const that = this;
 
     firebase.auth().signInWithPopup(provider).then(function(result) {
-      const token = result.credential.accessToken;
       const user = result.user;
 
-      that.props.appState.closeModal();
+      axios.post('api/users/login', {
+        facebook_id: user.uid
+      })
+      .then(res => {
+        if (res.status === 200) {
+          const decoded = jwt.verify(res.data.access_token, credentials.JWT_SECRET_KEY);
+
+          that.props.appState.userLogin({
+            name: decoded.name,
+            access_token: res.data.access_token,
+            email: decoded.email,
+            image_profile: decoded.image_profile
+          });
+          that.props.appState.closeModal();
+        } else {
+          that.props.appState.noticeUserRegisterRequired();
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
     }).catch(function(error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -45,7 +65,7 @@ class App extends Component {
 
   signUpWithFacebook() {
     const that = this;
-    
+
     firebase.auth().signInWithPopup(provider).then(function(result) {
       const token = result.credential.accessToken;
       const user = result.user;
@@ -124,6 +144,11 @@ class App extends Component {
                   : null}
                 {this.props.appState.modalTitle === 'AlreadyRegisteredUserNotice'
                   ? <AlreadyRegisteredUserNotice
+                      showUpLoginForm={this.props.appState.showUpLoginForm}
+                    />
+                  : null}
+                {this.props.appState.modalTitle === 'RegisterRequiredNotice'
+                  ? <RegisterRequiredNotice
                       showUpLoginForm={this.props.appState.showUpLoginForm}
                     />
                   : null}

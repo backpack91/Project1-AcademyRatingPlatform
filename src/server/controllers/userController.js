@@ -1,6 +1,8 @@
 const User = require('../models/users.js');
 const bodyParser = require('body-parser');
-const validator = require("email-validator");
+const validator = require('email-validator');
+const jwt = require('jsonwebtoken');
+const credentials = require('../config/credentials.js');
 
 const checkMemberOrNot  = function (req, res, next) {
   User.find( { facebook_id: req.body.facebook_id }, function(err, arr) {
@@ -35,7 +37,33 @@ const registerNewMember = function (req, res, next) {
   });
 }
 
+const generateJWT = function(req, res, next) {
+  User.findOne({facebook_id: req.body.facebook_id}, function(err, user) {
+    if (err) { return console.log(err) }
+
+    if(user) {
+      function getToken() {
+        const token = jwt.sign({
+          uid: req.body.facebook_id,
+          email: user.email,
+          name: user.name,
+          image_profile: user.image_profile
+        }, credentials.JWT_SECRET_KEY);
+
+        return token;
+      }
+
+      res.send({
+        access_token: getToken()
+      });
+    } else {
+      res.sendStatus(204);
+    }
+  });
+}
+
 module.exports = {
   checkMemberOrNot,
-  registerNewMember
+  registerNewMember,
+  generateJWT
 }

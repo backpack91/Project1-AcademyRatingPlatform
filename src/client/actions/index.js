@@ -1,6 +1,6 @@
 import {
-  GET_LOGGED_IN,
-  GET_LOGGED_OUT,
+  USER_LOG_IN,
+  USER_LOG_OUT,
   SHOW_ALL_FEEDS,
 } from '../constants/actionTypes';
 import {
@@ -8,7 +8,8 @@ import {
   SHOW_UP_LOGIN_FORM,
   SHOW_UP_RECEIPT_SUBMISSION_FORM,
   SHOW_UP_AUTH_REQUEST_COMPLETION_NOTICE,
-  ALREADY_REGISTERED_USER_NOTICE
+  ALREADY_REGISTERED_USER_NOTICE,
+  REGISTER_REQUIRED_NOTICE
 } from '../constants/modalTypes';
 
 export function showUpLoginForm() {
@@ -38,11 +39,13 @@ export function closeModal() {
   };
 }
 
-export function getLoggedIn(loginInfos) {
+export function userLogin(loginInfos) {
   return {
     type: USER_LOG_IN,
-    id: loginInfos.token,
-    user: loginInfos.user
+    name: loginInfos.name,
+    access_token: loginInfos.access_token,
+    email: loginInfos.email,
+    image_profile: loginInfos.image_profile
   };
 }
 
@@ -57,5 +60,12 @@ export function alreadyRegisteredUserNotice() {
   return {
     type: ALREADY_REGISTERED_USER_NOTICE,
     modalTitle: 'AlreadyRegisteredUserNotice'
+  };
+}
+
+export function registerRequiredNotice() {
+  return {
+    type: REGISTER_REQUIRED_NOTICE,
+    modalTitle: 'RegisterRequiredNotice'
   };
 }
