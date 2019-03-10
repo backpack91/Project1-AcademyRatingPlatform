@@ -2,6 +2,15 @@ import React, {Component} from "react";
 import "./Header.scss";
 
 class Header extends Component {
+  renderUserAccountIcon() {
+    return (
+      <div className="userAccountIconWrapper">
+        <div>{this.props.user.name}님</div>
+        <img src={this.props.user.image_profile}></img>
+      </div>
+    );
+  }
+
   render () {
     return (
       <div className="header">
@@ -11,7 +20,10 @@ class Header extends Component {
             <div>당나귀귀</div>
           </div>
           <div className="navigator">
-            <div onClick={this.props.showUpLoginForm}>로그인</div>
+            {this.props.onLogin
+              ? this.renderUserAccountIcon()
+              : <div onClick={this.props.showUpLoginForm}>로그인</div>
+            }
           </div>
         </div>
         <div className="imageBenner" >

@@ -26,13 +26,13 @@ class AppContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('auth state!!!!!!', state.auth);
   return {
     currentList: state.academyList.currentList,
     isModalShownUp: state.auth.isModalShownUp,
     modalTitle: state.auth.modalTitle,
     access_token: state.auth.accessToken,
-    user: state.auth.user
+    user: state.auth.user,
+    onLogin: state.auth.onLogin
   };
 };
 

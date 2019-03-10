@@ -30,6 +30,24 @@
     div {
       cursor: pointer;
     }
+
+    .userAccountIconWrapper {
+      width: 90px;
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      div {
+        border-bottom: solid 1px white;
+      }
+
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 25rem;
+      }
+    }
   }
 
   .imageBenner {

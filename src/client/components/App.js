@@ -119,7 +119,11 @@ class App extends Component {
     return (
       <Router>
         <div className="appWrapper">
-          <Header showUpLoginForm={this.props.appState.showUpLoginForm}/>
+          <Header
+            showUpLoginForm={this.props.appState.showUpLoginForm}
+            onLogin={this.props.appState.onLogin}
+            user={this.props.appState.user}
+          />
           <AcademyList academyList={this.props.appState.currentList}/>
           {this.props.appState.isModalShownUp
             ? <Modal closeModal={this.props.appState.closeModal} >
