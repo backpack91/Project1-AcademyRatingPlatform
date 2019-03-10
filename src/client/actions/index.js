@@ -1,7 +1,8 @@
 import {
   USER_LOG_IN,
   USER_LOG_OUT,
-  SHOW_ALL_FEEDS,
+  FEED_LIST,
+  ON_SEARCH,
 } from '../constants/actionTypes';
 import {
   CLOSE_MODAL,
@@ -49,9 +50,10 @@ export function userLogin(loginInfos) {
   };
 }
 
-export function showAllFeeds(feedList) {
+export function feedList(feedList) {
+  console.log('feedlist!!!!!!!!!!!!!in action:', feedList.data);
   return {
-    type: SHOW_ALL_FEEDS,
+    type: FEED_LIST,
     list: feedList.data
   };
 }

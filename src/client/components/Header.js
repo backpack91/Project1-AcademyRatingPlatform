@@ -32,7 +32,10 @@ class Header extends Component {
         </div>
         <div className="inputWrapper">
           <i className="fas fa-search"></i>
-          <input />
+          <input
+            onChange={this.props.onTypingSearchKeyword}
+            onKeyDown={this.props.onSearch}
+          />
         </div>
       </div>
     );

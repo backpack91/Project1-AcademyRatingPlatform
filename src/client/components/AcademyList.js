@@ -16,7 +16,7 @@ class AcademyList extends Component {
       };
 
       return (
-        <div className="academy" key={item.id}>
+        <div className="academy" key={item._id}>
           <div className="image" style={image}>
             <div className="rate">{item.rate}</div>
           </div>

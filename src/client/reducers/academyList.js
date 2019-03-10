@@ -1,5 +1,6 @@
 import {
-  SHOW_ALL_FEEDS
+  FEED_LIST,
+  ON_SEARCH
 } from '../constants/actionTypes';
 
 const initialStates = {
@@ -8,10 +9,10 @@ const initialStates = {
 
 export default function academyList (state = initialStates, action) {
   switch (action.type) {
-    case SHOW_ALL_FEEDS:
+    case FEED_LIST:
       return {
         currentList: action.list
-      };
+      }; 
 
     default:
       return state;

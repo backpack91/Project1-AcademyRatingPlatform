@@ -4,13 +4,14 @@ import App from '../components/App.js';
 import axios from 'axios';
 import {
   userLogin,
-  showAllFeeds,
+  feedList,
   showUpLoginForm,
   closeModal,
   showUpReceiptSubmissionForm,
   showUpAuthRequestCompletionNotice,
   registerRequiredNotice,
-  alreadyRegisteredUserNotice
+  alreadyRegisteredUserNotice,
+  onSearch
 } from '../actions';
 
 class AppContainer extends Component {
@@ -26,13 +27,15 @@ class AppContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('state.academyList.currentList: ', state.academyList.currentList)
   return {
     currentList: state.academyList.currentList,
     isModalShownUp: state.auth.isModalShownUp,
     modalTitle: state.auth.modalTitle,
     access_token: state.auth.accessToken,
     user: state.auth.user,
-    onLogin: state.auth.onLogin
+    onLogin: state.auth.onLogin,
+    searchKeyword: state.academyList
   };
 };
 
@@ -41,7 +44,7 @@ const mapDispatchToProps = (dispatch) => {
     onMount: () => {
       axios.get('api/academies')
       .then(res => {
-        dispatch(showAllFeeds(res));
+        dispatch(feedList(res));
       })
       .catch(err => {
         console.log(err);
@@ -67,6 +70,15 @@ const mapDispatchToProps = (dispatch) => {
     },
     userLogin: (loginInfos) => {
       dispatch(userLogin(loginInfos));
+    },
+    onSearch: (searchKeyword) => {
+      axios.get(`api/academies?q=${searchKeyword}`)
+      .then(res => {
+        dispatch(feedList(res));
+      })
+      .catch(err => {
+        console.error(err);
+      });
     }
   };
 };

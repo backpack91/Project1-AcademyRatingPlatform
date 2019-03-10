@@ -20,12 +20,15 @@ class App extends Component {
 
     this.state = {
       user: {},
-      access_token: ''
+      access_token: '',
+      searchKeyword: ''
     }
 
     this.logInWithFacebook = this.logInWithFacebook.bind(this);
     this.signUpWithFacebook = this.signUpWithFacebook.bind(this);
     this.requestNewMemberRegistration = this.requestNewMemberRegistration.bind(this);
+    this.onTypingSearchKeyword = this.onTypingSearchKeyword.bind(this);
+    this.onSearch = this.onSearch.bind(this);
   }
 
   logInWithFacebook() {
@@ -115,6 +118,20 @@ class App extends Component {
     });
   }
 
+  onTypingSearchKeyword(e) {
+    const input = e.target;
+
+    this.setState(state => ({
+      searchKeyword: input.value
+    }));
+  }
+
+  onSearch(e) {
+    if (e.keyCode === 13) {
+      this.props.appState.onSearch(this.state.searchKeyword);
+    }
+  }
+
   render () {
     return (
       <Router>
@@ -123,6 +140,8 @@ class App extends Component {
             showUpLoginForm={this.props.appState.showUpLoginForm}
             onLogin={this.props.appState.onLogin}
             user={this.props.appState.user}
+            onTypingSearchKeyword={this.onTypingSearchKeyword}
+            onSearch={this.onSearch}
           />
           <AcademyList academyList={this.props.appState.currentList}/>
           {this.props.appState.isModalShownUp
