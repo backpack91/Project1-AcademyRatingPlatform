@@ -41,21 +41,18 @@ class App extends Component {
         facebook_id: user.uid
       })
       .then(res => {
-        if (res.status === 200) {
-          const decoded = jwt.verify(res.data.access_token, credentials.JWT_SECRET_KEY);
+        const decoded = jwt.verify(res.data.access_token, credentials.JWT_SECRET_KEY);
 
-          that.props.appState.userLogin({
-            name: decoded.name,
-            access_token: res.data.access_token,
-            email: decoded.email,
-            image_profile: decoded.image_profile
-          });
-          that.props.appState.closeModal();
-        } else {
-          that.props.appState.noticeUserRegisterRequired();
-        }
+        that.props.appState.userLogin({
+          name: decoded.name,
+          access_token: res.data.access_token,
+          email: decoded.email,
+          image_profile: decoded.image_profile
+        });
+        that.props.appState.closeModal();
       })
       .catch(err => {
+        that.props.appState.noticeUserRegisterRequired();
         console.error(err);
       });
     }).catch(function(error) {
@@ -78,17 +75,14 @@ class App extends Component {
         facebook_id: user.uid
       })
       .then(res => {
-        if (res.status === 200) {
-          that.props.appState.showUpReceiptSubmissionForm();
-        }  else {
-          that.props.appState.noticeUserAlreadyRegistered();
-        }
+        that.props.appState.showUpReceiptSubmissionForm();
         that.setState(state => ({
           user,
           token
         }));
       })
       .catch(err => {
+        that.props.appState.noticeUserAlreadyRegistered();
         console.error(err);
       });
     }).catch(function(error) {
