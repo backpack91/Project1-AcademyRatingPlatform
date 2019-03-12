@@ -10,7 +10,7 @@ const s3 = new aws.S3({
   region: 'ap-northeast-2'
 });
 
-const upload = multer({
+const uploadReceiptImages = multer({
   storage: multerS3({
     s3: s3,
     bucket: 'wondanggui-images',
@@ -18,9 +18,26 @@ const upload = multer({
       cb(null, {fieldName: 'RECEIPT_PHOTO'});
     },
     key: function (req, file, cb) {
-      cb(null, req.query.uid)
+      let fileNameWithDirectory = `user_receipt_images/${req.query.uid}`;
+
+      cb(null, fileNameWithDirectory);
     }
   })
 });
 
-module.exports = upload;
+const uploadAcademyImages = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'wondanggui-images',
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: 'ACADEMY_PROFILE_IMAGE'});
+    },
+    key: function (req, file, cb) {
+      let fileNameWithDirectory = `academy_profile_images/${req.query.academyId}`;
+
+      cb(null, fileNameWithDirectory);
+    }
+  })
+});
+
+module.exports = { uploadReceiptImages, uploadAcademyImages };
