@@ -14,15 +14,16 @@ class Header extends Component {
   render () {
     return (
       <div className="header">
-        <div className="navigatorWrapper">
+        <div className="navigatorsWrapper">
           <div className="logo">
             <div>원장님귀는</div>
             <div>당나귀귀</div>
           </div>
-          <div className="navigator">
+          <div className="navigators">
+            <div className="nav" onClick={this.props.checkAuth}>학원등록</div>
             {this.props.onLogin
               ? this.renderUserAccountIcon()
-              : <div onClick={this.props.showUpLoginForm}>로그인</div>
+              : <div className="nav" onClick={this.props.showUpLoginForm}>로그인</div>
             }
           </div>
         </div>

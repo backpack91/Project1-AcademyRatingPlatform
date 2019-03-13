@@ -101,7 +101,7 @@ class AuthModal extends Component {
             {$imagePreview}
             {this.state.onAlert ? this.renderAlertFileType() : null}
           </div>
-          <form onSubmit={this.handleSubmit} action='api/users/new/receipt-photo' method='post'>
+          <form onSubmit={this.handleSubmit} >
             <input className="fileInput"
               type="file"
               onChange={this.handleImageChange} />

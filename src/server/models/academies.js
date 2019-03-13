@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AcademiesSchema = new Schema({
-  image_adress: String,
+  _id: Schema.Types.ObjectId,
+  image: String,
   name: String,
   category: String,
   description: String,

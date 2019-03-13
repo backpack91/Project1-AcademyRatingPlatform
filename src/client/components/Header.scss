@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
 
-  .navigatorWrapper {
+  .navigatorsWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,34 +18,41 @@
       width: 20%;
       cursor: pointer;
     }
-  }
 
-  .navigator {
-    width: 60%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    div {
-      cursor: pointer;
-    }
-
-    .userAccountIconWrapper {
-      width: 90px;
-      height: 50px;
+    .navigators {
+      width: 60%;
+      height: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
 
-      div {
-        border-bottom: solid 1px white;
+      .nav {
+        cursor: pointer;
+        margin: 0 0 0 1rem;
+        padding-left: 1rem;
+        border-left: solid 1px gray;
       }
 
-      img {
-        width: 30px;
-        height: 30px;
-        border-radius: 25rem;
+      .userAccountIconWrapper {
+        width: 120px;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+          cursor: pointer;
+          margin: 0 0 0 1rem;
+          padding-left: 1rem;
+          border-left: solid 1px gray;
+        }
+
+        img {
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
+          border-radius: 25rem;
+        }
       }
     }
   }

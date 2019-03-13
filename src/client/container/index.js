@@ -11,7 +11,11 @@ import {
   showUpAuthRequestCompletionNotice,
   registerRequiredNotice,
   alreadyRegisteredUserNotice,
-  onSearch
+  onSearch,
+  academyRegistrationForm,
+  submissionAcademyInfos,
+  loginRequiredForm,
+  academyRegistrationCompletionForm
 } from '../actions';
 
 class AppContainer extends Component {
@@ -27,15 +31,13 @@ class AppContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state.academyList.currentList: ', state.academyList.currentList)
   return {
-    currentList: state.academyList.currentList,
-    isModalShownUp: state.auth.isModalShownUp,
-    modalTitle: state.auth.modalTitle,
-    access_token: state.auth.accessToken,
-    user: state.auth.user,
-    onLogin: state.auth.onLogin,
-    searchKeyword: state.academyList
+    currentList: state.currentList,
+    isModalShownUp: state.isModalShownUp,
+    modalTitle: state.modalTitle,
+    access_token: state.access_token,
+    user: state.user,
+    onLogin: state.onLogin
   };
 };
 
@@ -62,6 +64,12 @@ const mapDispatchToProps = (dispatch) => {
     showUpAuthRequestCompletionNotice: () => {
       dispatch(showUpAuthRequestCompletionNotice());
     },
+    showUpLoginRequiredForm: () => {
+      dispatch(loginRequiredForm());
+    },
+    showUpAcademyRegistrationCompletionForm: () => {
+      dispatch(academyRegistrationCompletionForm());
+    },
     noticeUserAlreadyRegistered: () => {
       dispatch(alreadyRegisteredUserNotice());
     },
@@ -79,6 +87,12 @@ const mapDispatchToProps = (dispatch) => {
       .catch(err => {
         console.error(err);
       });
+    },
+    showUpAcademyRegistrationForm: () => {
+      dispatch(academyRegistrationForm());
+    },
+    submitAcademyInfos: (academyInfos) => {
+      dispatch(submissionAcademyInfos(academyInfos));
     }
   };
 };

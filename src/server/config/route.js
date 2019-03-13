@@ -10,8 +10,7 @@ const jsonParser = bodyParser.json();
 
 router.get('/academies', academyController.listUpAcademies);
 
-router.post('/academies/new/academy-image-profile', fileUploader.uploadAcademyImages.single('academy_image'), fileController.uploadFile);
-router.post('/academies/new/registration', jsonParser, academyController.registerAcademy);
+router.post('/academies/new/registration', academyController.registerAcademy);
 router.post('/academies/new/access_token', jsonParser, academyController.checkAuth);
 
 router.post('/users/login',jsonParser, userController.generateJWT);

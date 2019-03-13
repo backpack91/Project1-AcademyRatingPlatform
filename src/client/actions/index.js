@@ -10,7 +10,10 @@ import {
   SHOW_UP_RECEIPT_SUBMISSION_FORM,
   SHOW_UP_AUTH_REQUEST_COMPLETION_NOTICE,
   ALREADY_REGISTERED_USER_NOTICE,
-  REGISTER_REQUIRED_NOTICE
+  REGISTER_REQUIRED_NOTICE,
+  ACADEMY_REGISTRATION_FORM,
+  LOGIN_REQUIRED_FORM,
+  ACADEMY_REGISTRATION_COMPLETION_FORM
 } from '../constants/modalTypes';
 
 export function showUpLoginForm() {
@@ -51,7 +54,6 @@ export function userLogin(loginInfos) {
 }
 
 export function feedList(feedList) {
-  console.log('feedlist!!!!!!!!!!!!!in action:', feedList.data);
   return {
     type: FEED_LIST,
     list: feedList.data
@@ -69,5 +71,33 @@ export function registerRequiredNotice() {
   return {
     type: REGISTER_REQUIRED_NOTICE,
     modalTitle: 'RegisterRequiredNotice'
+  };
+}
+
+export function academyRegistrationForm() {
+  return {
+    type: ACADEMY_REGISTRATION_FORM,
+    modalTitle: 'AcademyRegistrationForm'
+  };
+}
+
+export function submissionAcademyInfos(academyInfos) {
+  return {
+    type: SUBMISSION_ACADEMY_INFOS,
+    academyInfos
+  };
+}
+
+export function loginRequiredForm() {
+  return {
+    type: LOGIN_REQUIRED_FORM,
+    modalTitle: 'LoginRequiredForm'
+  };
+}
+
+export function academyRegistrationCompletionForm() {
+  return {
+    type: ACADEMY_REGISTRATION_COMPLETION_FORM,
+    modalTitle: 'AcademyRegistrationCompletionForm'
   };
 }

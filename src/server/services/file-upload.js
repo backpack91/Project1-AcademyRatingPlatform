@@ -14,9 +14,6 @@ const uploadReceiptImages = multer({
   storage: multerS3({
     s3: s3,
     bucket: 'wondanggui-images',
-    metadata: function (req, file, cb) {
-      cb(null, {fieldName: 'RECEIPT_PHOTO'});
-    },
     key: function (req, file, cb) {
       let fileNameWithDirectory = `user_receipt_images/${req.query.uid}`;
 
@@ -25,19 +22,18 @@ const uploadReceiptImages = multer({
   })
 });
 
-const uploadAcademyImages = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: 'wondanggui-images',
-    metadata: function (req, file, cb) {
-      cb(null, {fieldName: 'ACADEMY_PROFILE_IMAGE'});
-    },
-    key: function (req, file, cb) {
-      let fileNameWithDirectory = `academy_profile_images/${req.query.academyId}`;
+const uploadAcademyImages = (req, res, next) => {
+  return multer({
+    storage: multerS3({
+      s3: s3,
+      bucket: 'wondanggui-images',
+      key: function (req, file, cb) {
+        let fileNameWithDirectory = `${res.locals.fileDirectory}/${res.locals.fileId}`;
 
-      cb(null, fileNameWithDirectory);
-    }
-  })
-});
+        cb(null, fileNameWithDirectory);
+      }
+    })
+  }).single(res.locals.fileCategory)(req, res, next);
+};
 
 module.exports = { uploadReceiptImages, uploadAcademyImages };

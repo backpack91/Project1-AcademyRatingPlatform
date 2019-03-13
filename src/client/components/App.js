@@ -11,6 +11,9 @@ import AuthRequestCompletionNotice from './AuthRequestCompletionNotice.js';
 import ReceiptSubmissionForm from './ReceiptSubmissionForm.js';
 import AlreadyRegisteredUserNotice from './AlreadyRegisteredUserNotice.js';
 import RegisterRequiredNotice from './RegisterRequiredNotice.js';
+import AcademyRegistrationForm from './AcademyRegistrationForm.js';
+import LoginRequiredForm from './LoginRequiredForm.js';
+import AcademyRegistrationCompletionForm from './AcademyRegistrationCompletionForm.js';
 import "./App.scss";
 import credentials from '../../server/config/credentials.js';
 
@@ -29,6 +32,7 @@ class App extends Component {
     this.requestNewMemberRegistration = this.requestNewMemberRegistration.bind(this);
     this.onTypingSearchKeyword = this.onTypingSearchKeyword.bind(this);
     this.onSearch = this.onSearch.bind(this);
+    this.checkAuth = this.checkAuth.bind(this);
   }
 
   logInWithFacebook() {
@@ -126,6 +130,15 @@ class App extends Component {
     }
   }
 
+  checkAuth() {
+    console.log('this.props.appState: ', this.props.appState);
+    if (this.props.appState.access_token) {
+      this.props.appState.showUpAcademyRegistrationForm();
+    } else {
+      this.props.appState.showUpLoginRequiredForm();
+    }
+  }
+
   render () {
     return (
       <Router>
@@ -136,6 +149,8 @@ class App extends Component {
             user={this.props.appState.user}
             onTypingSearchKeyword={this.onTypingSearchKeyword}
             onSearch={this.onSearch}
+            showUpAcademyRegistrationForm={this.props.appState.showUpAcademyRegistrationForm}
+            checkAuth={this.checkAuth}
           />
           <AcademyList academyList={this.props.appState.currentList}/>
           {this.props.appState.isModalShownUp
@@ -167,6 +182,21 @@ class App extends Component {
                 {this.props.appState.modalTitle === 'RegisterRequiredNotice'
                   ? <RegisterRequiredNotice
                       showUpLoginForm={this.props.appState.showUpLoginForm}
+                    />
+                  : null}
+                {this.props.appState.modalTitle === 'AcademyRegistrationForm'
+                  ? <AcademyRegistrationForm
+                      showUpAcademyRegistrationCompletionForm={this.props.appState.showUpAcademyRegistrationCompletionForm}
+                    />
+                  : null}
+                {this.props.appState.modalTitle === 'LoginRequiredForm'
+                  ? <LoginRequiredForm
+                      showUpLoginForm={this.props.appState.showUpLoginForm}
+                    />
+                  : null}
+                {this.props.appState.modalTitle === 'AcademyRegistrationCompletionForm'
+                  ? <AcademyRegistrationCompletionForm
+                      closeModal={this.props.appState.closeModal}
                     />
                   : null}
               </Modal>
