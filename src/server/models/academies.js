@@ -16,7 +16,15 @@ const AcademiesSchema = new Schema({
     }
   ],
   rate: Number,
-  best_comment: String
+  best_comment: String,
+  reviews: [
+    {
+      user_id: String,
+      text: String,
+      date: String,
+      rate: Number
+    }
+  ]
 });
 
 module.exports = mongoose.model('Academies', AcademiesSchema);

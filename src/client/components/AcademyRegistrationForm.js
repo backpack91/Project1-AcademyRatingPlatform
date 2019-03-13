@@ -21,8 +21,8 @@ class AcademyRegistrationForm extends Component {
     const target = e.target;
     e.preventDefault();
     const formData = new FormData();
-
     const objArr = [];
+
     formData.append('academy_image', this.state.file);
     formData.set('academy_details', JSON.stringify(this.state.academy_info));
 
@@ -45,7 +45,6 @@ class AcademyRegistrationForm extends Component {
   handleFiles(e) {
     const target = e.target;
 
-    console.log('this.state: ', this.state)
     this.setState(state => {
       const newAcademyInfo = _.cloneDeep(state.academy_info);
       const courses = [];
@@ -79,7 +78,7 @@ class AcademyRegistrationForm extends Component {
         return {
           academy_info: newAcademyInfo,
           courseDescription: target.value
-        }
+        };
       } else {
         newAcademyInfo[target.name] = target.value;
       }

@@ -9,9 +9,10 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 router.get('/academies', academyController.listUpAcademies);
+router.get('/academies/:academy_id', academyController.sendAcademyDetails);
 
+router.post('/academies/:academy_id/review', jsonParser, academyController.registerReview);
 router.post('/academies/new/registration', academyController.registerAcademy);
-router.post('/academies/new/access_token', jsonParser, academyController.checkAuth);
 
 router.post('/users/login',jsonParser, userController.generateJWT);
 router.post('/users/new', jsonParser, userController.checkMemberOrNot);

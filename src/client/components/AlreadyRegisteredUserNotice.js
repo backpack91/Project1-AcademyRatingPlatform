@@ -5,7 +5,7 @@ class AlreadyRegisteredUserNotice extends Component {
   render () {
     const modalBackgroundHeight = {
       height: document.body.clientHeight
-    }
+    };
 
     return (
       <div className="formWrapper">

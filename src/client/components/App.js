@@ -131,7 +131,6 @@ class App extends Component {
   }
 
   checkAuth() {
-    console.log('this.props.appState: ', this.props.appState);
     if (this.props.appState.access_token) {
       this.props.appState.showUpAcademyRegistrationForm();
     } else {

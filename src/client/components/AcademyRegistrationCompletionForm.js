@@ -5,7 +5,7 @@ class AcademyRegistrationCompletionForm extends Component {
   render () {
     const modalBackgroundHeight = {
       height: document.body.clientHeight
-    }
+    };
 
     return (
       <div className="academyRegistrationCompletionForm">
