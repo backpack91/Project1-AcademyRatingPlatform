@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 module.exports = {
   connect (url) {
-    mongoose.connect(url);
+    mongoose.connect(url, { useNewUrlParser: true });
 
     var db = mongoose.connection;
 

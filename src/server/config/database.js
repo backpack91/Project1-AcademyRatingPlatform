@@ -1,13 +1,15 @@
+const credential = require('./credentials.js');
+
 module.exports = function (env) {
   switch(env){
     case "development":
       return {
-        url: 'mongodb://localhost:27017/wondanggui',
+        url: `mongodb://admin:${credential.ATLAS_USER_PASSWORD}@ds119258.mlab.com:19258/wondanggui`,
       };
       break;
     default:
       return {
-        url: 'mongodb://master:djqgldj1234@ds137100.mlab.com:37100/upheredb/',
+        url: `mongodb://admin:${credential.ATLAS_USER_ID}@ds119258.mlab.com:19258/wondanggui`,
       };
   }
 };

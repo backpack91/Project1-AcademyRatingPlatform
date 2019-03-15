@@ -67,7 +67,6 @@ const sendAcademyDetails = async function (req, res, next) {
   }
 };
 
-
 const registerReview = async function (req, res, next) {
   const ObjectId = mongoose.Types.ObjectId;
 
