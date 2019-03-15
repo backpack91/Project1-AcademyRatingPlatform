@@ -15,7 +15,10 @@ import {
   academyRegistrationForm,
   submissionAcademyInfos,
   loginRequiredForm,
-  academyRegistrationCompletionForm
+  academyRegistrationCompletionForm,
+  academyDetails,
+  togglingReviews,
+  togglingReviewInput
 } from '../actions';
 
 class AppContainer extends Component {
@@ -37,7 +40,10 @@ const mapStateToProps = (state) => {
     modalTitle: state.modalTitle,
     access_token: state.access_token,
     user: state.user,
-    onLogin: state.onLogin
+    onLogin: state.onLogin,
+    academyDetails: state.academyDetails,
+    isReviewsShownUp: state.isReviewsShownUp,
+    isReviewInputShownUp: state.isReviewInputShownUp
   };
 };
 
@@ -50,6 +56,15 @@ const mapDispatchToProps = (dispatch) => {
       })
       .catch(err => {
         console.log(err);
+      });
+    },
+    getAcademyDetails: (academy_id) => {
+      axios.get(`http://localhost:3000/api/academies/${academy_id}`)
+      .then(res => {
+        dispatch(academyDetails(res))
+      })
+      .catch(err => {
+        console.log('err: ', err);
       });
     },
     showUpLoginForm: () => {
@@ -80,7 +95,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(userLogin(loginInfos));
     },
     onSearch: (searchKeyword) => {
-      axios.get(`api/academies?q=${searchKeyword}`)
+      axios.get(`http://localhost:3000/api/academies?q=${searchKeyword}`)
       .then(res => {
         dispatch(feedList(res));
       })
@@ -93,6 +108,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     submitAcademyInfos: (academyInfos) => {
       dispatch(submissionAcademyInfos(academyInfos));
+    },
+    toggleReview: () => {
+      dispatch(togglingReviews());
+    },
+    toggleReviewInput: () => {
+      dispatch(togglingReviewInput());
     }
   };
 };

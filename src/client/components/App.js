@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as Router} from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Redirect} from "react-router-dom";
 import { firebase, provider } from './../../services/firebaseConfig.js';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
@@ -14,6 +14,8 @@ import RegisterRequiredNotice from './RegisterRequiredNotice.js';
 import AcademyRegistrationForm from './AcademyRegistrationForm.js';
 import LoginRequiredForm from './LoginRequiredForm.js';
 import AcademyRegistrationCompletionForm from './AcademyRegistrationCompletionForm.js';
+import SearchInput from './SearchInput.js';
+import Academy from './Academy.js';
 import "./App.scss";
 import credentials from '../../server/config/credentials.js';
 
@@ -74,7 +76,7 @@ class App extends Component {
       const token = result.credential.accessToken;
       const user = result.user;
 
-      axios.post('api/users/new', {
+      axios.post('http://localhost:3000/api/users/new', {
         token,
         facebook_id: user.uid
       })
@@ -141,17 +143,52 @@ class App extends Component {
   render () {
     return (
       <Router>
-        <div className="appWrapper">
-          <Header
-            showUpLoginForm={this.props.appState.showUpLoginForm}
-            onLogin={this.props.appState.onLogin}
-            user={this.props.appState.user}
-            onTypingSearchKeyword={this.onTypingSearchKeyword}
-            onSearch={this.onSearch}
-            showUpAcademyRegistrationForm={this.props.appState.showUpAcademyRegistrationForm}
-            checkAuth={this.checkAuth}
+        <div className='appWrapper'>
+            <Route exact path='/'
+            render={() =>
+              <Redirect to='/newFeeds' />
+            }
           />
-          <AcademyList academyList={this.props.appState.currentList}/>
+        <Route path='/newFeeds'
+            render={() => (
+              <Header
+                showUpLoginForm={this.props.appState.showUpLoginForm}
+                onLogin={this.props.appState.onLogin}
+                user={this.props.appState.user}
+                showUpAcademyRegistrationForm={this.props.appState.showUpAcademyRegistrationForm}
+                checkAuth={this.checkAuth}
+              />
+            )}
+          />
+        <Route exact path='/newFeeds'
+            render={() => (
+              <SearchInput
+                onTypingSearchKeyword={this.onTypingSearchKeyword}
+                onSearch={this.onSearch}
+              />
+            )}
+          />
+        <Route exact path='/newFeeds'
+            render={() => (
+              <AcademyList
+                academyList={this.props.appState.currentList}
+              />
+            )}
+          />
+        <Route exact path='/newFeeds/:academy_id'
+            render={(props) => (
+              <Academy
+                {...props}
+                getAcademyDetails={this.props.appState.getAcademyDetails}
+                academyDetails={this.props.appState.academyDetails}
+                toggleReview={this.props.appState.toggleReview}
+                isReviewsShownUp={this.props.appState.isReviewsShownUp}
+                toggleReviewInput={this.props.appState.toggleReviewInput}
+                isReviewInputShownUp={this.props.appState.isReviewInputShownUp}
+                accessToken={this.props.appState.access_token}
+              />
+            )}
+          />
           {this.props.appState.isModalShownUp
             ? <Modal closeModal={this.props.appState.closeModal} >
                 {this.props.appState.modalTitle === 'LoginForm'

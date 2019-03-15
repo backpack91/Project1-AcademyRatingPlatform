@@ -3,6 +3,9 @@ import {
   USER_LOG_OUT,
   FEED_LIST,
   ON_SEARCH,
+  ACADEMY_DETAILS,
+  TOGGLING_REVIEWS,
+  TOGGLING_REVIEW_INPUT
 } from '../constants/actionTypes';
 import {
   CLOSE_MODAL,
@@ -99,5 +102,24 @@ export function academyRegistrationCompletionForm() {
   return {
     type: ACADEMY_REGISTRATION_COMPLETION_FORM,
     modalTitle: 'AcademyRegistrationCompletionForm'
+  };
+}
+
+export function academyDetails(payload) {
+  return {
+    type: ACADEMY_DETAILS,
+    payload,
+  };
+}
+
+export function togglingReviews() {
+  return {
+    type: TOGGLING_REVIEWS
+  };
+}
+
+export function togglingReviewInput() {
+  return {
+    type: TOGGLING_REVIEW_INPUT
   };
 }

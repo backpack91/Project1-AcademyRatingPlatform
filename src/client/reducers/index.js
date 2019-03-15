@@ -13,7 +13,10 @@ import {
   USER_LOG_IN,
   USER_LOG_OUT,
   FEED_LIST,
-  ON_SEARCH
+  ON_SEARCH,
+  ACADEMY_DETAILS,
+  TOGGLING_REVIEWS,
+  TOGGLING_REVIEW_INPUT
 } from '../constants/actionTypes.js';
 
 const initialStates = {
@@ -22,7 +25,8 @@ const initialStates = {
   user: {},
   isModalShownUp: false,
   modalTitle: '',
-  currentList: {}
+  currentList: {},
+  isReviewsShownUp: false
 };
 
 export default function reducer (state = initialStates, action) {
@@ -103,6 +107,7 @@ export default function reducer (state = initialStates, action) {
 
     case FEED_LIST:
       return {
+        ...state,
         currentList: action.list
       };
 
@@ -112,6 +117,39 @@ export default function reducer (state = initialStates, action) {
         isModalShownUp: true,
         modalTitle: action.modalTitle
       };
+
+    case ACADEMY_DETAILS:
+      return {
+        ...state,
+        academyDetails: action.payload
+      };
+
+    case TOGGLING_REVIEWS:
+      if (state.isReviewsShownUp) {
+        return {
+          ...state,
+          isReviewsShownUp: false
+        };
+      } else {
+        return {
+          ...state,
+          isReviewsShownUp: true
+        };
+      }
+
+    case TOGGLING_REVIEW_INPUT:
+      if (state.isReviewInputShownUp) {
+        return {
+          ...state,
+          isReviewInputShownUp: false
+        };
+      } else {
+        return {
+          ...state,
+          isReviewInputShownUp: true
+        };
+      }
+
     default:
       return state;
   }
