@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -20,6 +20,7 @@ const AcademiesSchema = new Schema({
   reviews: [
     {
       user_id: String,
+      user_name: String,
       text: String,
       date: String,
       rate: Number

@@ -27,17 +27,6 @@ class Header extends Component {
             }
           </div>
         </div>
-        <div className="imageBenner" >
-          <h1>진짜 다녀본 사람들의</h1>
-          <h1>진짜 이야기</h1>
-        </div>
-        <div className="inputWrapper">
-          <i className="fas fa-search"></i>
-          <input
-            onChange={this.props.onTypingSearchKeyword}
-            onKeyDown={this.props.onSearch}
-          />
-        </div>
       </div>
     );
   }

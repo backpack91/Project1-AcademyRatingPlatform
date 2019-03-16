@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const credentials = require('../config/credentials.js');
 const httpHeaders = require('http-headers');
 const fileUploader = require('../services/file-upload.js');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const listUpAcademies  = async function (req, res, next) {
   const findWithQuery = {};
@@ -56,10 +56,11 @@ const registerAcademy = function (req, res, next) {
 };
 
 const sendAcademyDetails = async function (req, res, next) {
+  const ObjectId = mongoose.Types.ObjectId;
   const academy_id = req.params.academy_id;
 
   try {
-    const requestedAcademy = await Academy.findOne({_id: academy_id});
+    const requestedAcademy = await Academy.findById(ObjectId(academy_id));
 
     res.json(requestedAcademy);
   } catch (err) {
@@ -73,12 +74,12 @@ const registerReview = async function (req, res, next) {
   try {
     await Academy.findByIdAndUpdate(ObjectId(req.params.academy_id), {
       $push: {
-       reviews: {
+        reviews: {
           $each: [
             req.body
           ],
-       }
-     }
+        }
+      }
     });
 
     res.sendStatus(200);

@@ -27,6 +27,7 @@ const uploadAcademyImages = (req, res, next) => {
     storage: multerS3({
       s3: s3,
       bucket: 'wondanggui-images',
+      acl: 'public-read',
       key: function (req, file, cb) {
         let fileNameWithDirectory = `${res.locals.fileDirectory}/${res.locals.fileId}`;
 

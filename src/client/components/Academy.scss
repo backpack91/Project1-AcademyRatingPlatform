@@ -1,0 +1,235 @@
+.academyImageBenner {
+  position: relative;
+  background-color: black;
+  background-size: cover;
+  width: 100%;
+  height: 300px;
+  background-image: url('../../../public/img/students.png');
+}
+
+.academyDetailsWrapper {
+  padding: 0 5% 15px 5%;
+  color: black;
+  position: absolute;
+  background-color: white;
+  top: 80%;
+  left: 10%;
+  width: 70%;
+
+  .reviewsWrapper {
+    color: black;
+    width: 90%;
+    background-color: white;
+    box-shadow: rgba(219, 219, 219, 0.9) 0px 3px 8px 0px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .formWrapper {
+      width: 100%;
+
+      span {
+        margin-left: 1rem;
+      }
+
+      form {
+        width: 95%;
+        height: 8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 2% 2.5% 2% 2.5%;
+        color: gray;
+
+        .submitInput {
+          width: 5rem;
+          height: 1.5rem;
+          background-color: gray;
+          color: white;
+          margin-left: 16rem;
+        }
+
+        select {
+          margin-left: 0.7rem;
+          margin-right: 0.2rem;
+          width: 2rem;
+          height: 1rem;
+          border: solid 1px gray;
+        }
+
+        textarea {
+          border: solid 1px gray;
+          font-size: 0.8rem;
+          padding: 3%;
+          border-radius: 1rem;
+          width: 94%;
+          height: 6rem;
+          margin-top: 0.5rem;
+        }
+
+        textarea:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .reviewWrapper {
+      border-radius: 1rem;
+      position: relative;
+      margin: 0.5rem 0 0 0;
+      display: flex;
+      padding: 1rem 0.5rem 0.5rem 0.5rem;
+      justify-content: flex-start;
+      align-items: center;
+      width: 95%;
+      border: solid 1px gray;
+
+      .text {
+        width: 90%;
+        height: 100%;
+      }
+
+      .dateWrapper {
+        width: 10%;
+        display: flex;
+        align-items: flex-end;
+        height: 100%;
+        color: gray;
+        margin-left: 5px;
+      }
+
+      .nameRateWrapper {
+        position: absolute;
+        top: -0.8rem;
+        left: 1rem;
+        margin-right: 1rem;
+        background-color: gray;
+        padding: 0.2rem;
+        color: white;
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+      }
+    }
+  }
+
+  .fa-comment {
+   z-index: 20;
+   color: white;
+   position: absolute;
+   background-color: #1D1D1F;
+   width: 3rem;
+   height: 3rem;
+   border-radius: 25rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 1.5rem;
+   right: 2.8rem;
+   bottom: 0.2rem;
+  }
+
+  .academyDetails {
+    .academyDetailsBorder {
+      border: solid 3px #1D1D1F;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-bottom: 1rem;
+
+      .reviewTitleWrapper {
+        width: 90%;
+        text-align: left;
+        display: flex;
+        align-items: flex-end;
+
+        .writingBtnWrapper {
+          width: 10%;
+          cursor: pointer;
+          color: white;
+          margin-bottom: 0.2rem;
+          border-radius: 1rem;
+          background-color: gray;
+          padding: 0.2rem 0 0 0.3rem;
+
+          i {
+            width: 20px;
+            height: 20px;
+            font-size: 1rem;
+          }
+        }
+
+
+
+        .reviewTitle {
+          margin: 0 0 0.3rem 1rem;
+          font-size: 1.5rem;
+          width: 90%;
+        }
+      }
+
+      .parentWrapper {
+        font-size: 1.2rem;
+        color: #1D1D1F;
+        padding: 0.5rem 2rem 0.5rem 2rem;
+
+        li {
+          margin-top: 1rem;
+
+          span {
+            color: white;
+            background-color: gray;
+            padding: 2px;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    h1 {
+      color: black;
+      text-align: right;
+      margin: 0;
+      font-size: 5rem;
+      padding: 10px 2rem 0 0;
+      margin-bottom: 0;
+    }
+
+    a:link {
+      color: #1B99EB;
+    }
+    a:visited {
+      color: #1B99EB;
+    }
+  }
+
+  img {
+    background-color: white;
+    position: absolute;
+    top: -90px;
+    left: 100px;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 25rem;
+    transform: translate(0, -50%);
+    box-shadow: 0px 5px 50px 0px #000000, 0px 0px 0px 7px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.academyDetailsWrapper:before {
+  display: block;
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -100px;
+  left: 0;
+  border-width: 100px 0 0 1024px;
+  border-color: transparent transparent transparent #ffffff;
+  border-style: solid;
+}
