@@ -21,6 +21,7 @@ const AcademiesSchema = new Schema({
     {
       user_id: String,
       user_name: String,
+      nick_name: String,
       text: String,
       date: String,
       rate: Number

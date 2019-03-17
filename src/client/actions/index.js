@@ -5,7 +5,8 @@ import {
   ON_SEARCH,
   ACADEMY_DETAILS,
   TOGGLING_REVIEWS,
-  TOGGLING_REVIEW_INPUT
+  TOGGLING_REVIEW_INPUT,
+  TOGGLING_ACCOUNT_MENU
 } from '../constants/actionTypes';
 import {
   CLOSE_MODAL,
@@ -53,6 +54,12 @@ export function userLogin(loginInfos) {
     access_token: loginInfos.access_token,
     email: loginInfos.email,
     image_profile: loginInfos.image_profile
+  };
+}
+
+export function userLogout() {
+  return {
+    type: USER_LOG_OUT
   };
 }
 
@@ -121,5 +128,11 @@ export function togglingReviews() {
 export function togglingReviewInput() {
   return {
     type: TOGGLING_REVIEW_INPUT
+  };
+}
+
+export function togglingAccountMenu() {
+  return {
+    type: TOGGLING_ACCOUNT_MENU
   };
 }

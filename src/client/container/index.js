@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import App from '../components/App.js';
 import axios from 'axios';
+import credentials from '../../server/config/credentials.js';
+import jwt from 'jsonwebtoken';
+
 import {
   userLogin,
+  userLogout,
   feedList,
   showUpLoginForm,
   closeModal,
@@ -18,12 +22,26 @@ import {
   academyRegistrationCompletionForm,
   academyDetails,
   togglingReviews,
-  togglingReviewInput
+  togglingReviewInput,
+  togglingAccountMenu
 } from '../actions';
 
 class AppContainer extends Component {
   componentDidMount() {
+    const access_token = localStorage.getItem('access_token');
+
     this.props.onMount();
+
+    if (access_token) {
+      const decoded = jwt.verify(access_token, credentials.JWT_SECRET_KEY);
+
+      this.props.userLogin({
+        name: decoded.name,
+        access_token,
+        email: decoded.email,
+        image_profile: decoded.image_profile
+      });
+    }
   }
 
   render() {
@@ -43,7 +61,8 @@ const mapStateToProps = (state) => {
     onLogin: state.onLogin,
     academyDetails: state.academyDetails,
     isReviewsShownUp: state.isReviewsShownUp,
-    isReviewInputShownUp: state.isReviewInputShownUp
+    isReviewInputShownUp: state.isReviewInputShownUp,
+    isAccountMenuShownUp: state.isAccountMenuShownUp
   };
 };
 
@@ -59,7 +78,7 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     getAcademyDetails: (academy_id) => {
-      axios.get(`http://localhost:3000/api/academies/${academy_id}`)
+      axios.get(`/api/academies/${academy_id}`)
       .then(res => {
         dispatch(academyDetails(res))
       })
@@ -94,8 +113,12 @@ const mapDispatchToProps = (dispatch) => {
     userLogin: (loginInfos) => {
       dispatch(userLogin(loginInfos));
     },
+    userLogout: () => {
+      localStorage.removeItem('access_token');
+      dispatch(userLogout());
+    },
     onSearch: (searchKeyword) => {
-      axios.get(`http://localhost:3000/api/academies?q=${searchKeyword}`)
+      axios.get(`/api/academies?q=${searchKeyword}`)
       .then(res => {
         dispatch(feedList(res));
       })
@@ -114,6 +137,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     toggleReviewInput: () => {
       dispatch(togglingReviewInput());
+    },
+    toggleAccountMenu: () => {
+      dispatch(togglingAccountMenu());
     }
   };
 };

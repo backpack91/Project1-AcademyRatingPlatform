@@ -16,7 +16,8 @@ import {
   ON_SEARCH,
   ACADEMY_DETAILS,
   TOGGLING_REVIEWS,
-  TOGGLING_REVIEW_INPUT
+  TOGGLING_REVIEW_INPUT,
+  TOGGLING_ACCOUNT_MENU
 } from '../constants/actionTypes.js';
 
 const initialStates = {
@@ -26,7 +27,8 @@ const initialStates = {
   isModalShownUp: false,
   modalTitle: '',
   currentList: {},
-  isReviewsShownUp: false
+  isReviewsShownUp: false,
+  isAccountMenuShownUp: false
 };
 
 export default function reducer (state = initialStates, action) {
@@ -83,6 +85,13 @@ export default function reducer (state = initialStates, action) {
           image_profile: action.image_profile
         }
       };
+
+      case USER_LOG_OUT:
+        return {
+          ...state,
+          isAccountMenuShownUp: false,
+          onLogin: false
+        };
 
     case ACADEMY_REGISTRATION_FORM:
     return {
@@ -147,6 +156,19 @@ export default function reducer (state = initialStates, action) {
         return {
           ...state,
           isReviewInputShownUp: true
+        };
+      }
+
+    case TOGGLING_ACCOUNT_MENU:
+      if (state.isAccountMenuShownUp) {
+        return {
+          ...state,
+          isAccountMenuShownUp: false
+        };
+      } else {
+        return {
+          ...state,
+          isAccountMenuShownUp: true
         };
       }
 

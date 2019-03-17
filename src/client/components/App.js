@@ -49,6 +49,7 @@ class App extends Component {
       .then(res => {
         const decoded = jwt.verify(res.data.access_token, credentials.JWT_SECRET_KEY);
 
+        localStorage.setItem('access_token', res.data.access_token);
         that.props.appState.userLogin({
           name: decoded.name,
           access_token: res.data.access_token,
@@ -76,7 +77,7 @@ class App extends Component {
       const token = result.credential.accessToken;
       const user = result.user;
 
-      axios.post('http://localhost:3000/api/users/new', {
+      axios.post('/api/users/new', {
         token,
         facebook_id: user.uid
       })
@@ -157,6 +158,9 @@ class App extends Component {
                 user={this.props.appState.user}
                 showUpAcademyRegistrationForm={this.props.appState.showUpAcademyRegistrationForm}
                 checkAuth={this.checkAuth}
+                isAccountMenuShownUp={this.props.appState.isAccountMenuShownUp}
+                toggleAccountMenu={this.props.appState.toggleAccountMenu}
+                userLogout={this.props.appState.userLogout}
               />
             )}
           />

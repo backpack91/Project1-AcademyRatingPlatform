@@ -48,6 +48,7 @@ class AuthModal extends Component {
       (file.type === 'image/jpeg' ||
         file.type === 'image/jpeg' ||
         file.type === 'image/jpg' ||
+        file.type === 'image/png' ||
         file.type === 'application/pdf')
     ) {
       reader.onloadend = () => {

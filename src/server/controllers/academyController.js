@@ -70,14 +70,26 @@ const sendAcademyDetails = async function (req, res, next) {
 
 const registerReview = async function (req, res, next) {
   const ObjectId = mongoose.Types.ObjectId;
+  const { access_token, text, rate, nick_name } = req.body.newReviewData;
+  const dateObj = new Date();
+  const currentTime = `${dateObj.getYear() + 1900}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`
+  const decoded = jwt.verify(access_token, credentials.JWT_SECRET_KEY);
 
+  const newReview = {
+    user_id: decoded.uid,
+    nick_name,
+    user_name: decoded.name,
+    text,
+    date: currentTime,
+    rate
+  }
   try {
     await Academy.findByIdAndUpdate(ObjectId(req.params.academy_id), {
       $push: {
         reviews: {
           $each: [
-            req.body
-          ],
+            newReview
+          ]
         }
       }
     });

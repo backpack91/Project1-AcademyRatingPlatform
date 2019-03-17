@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react";
 import "./Academy.scss";
+import axios from 'axios';
 
 class Academy extends Component {
   constructor(props) {
@@ -7,14 +8,16 @@ class Academy extends Component {
 
     this.state={
       review_rate: 0,
-      review_text: ''
+      review_text: '',
+      nick_name: ''
     }
 
     this.renderAcademyDetails = this.renderAcademyDetails.bind(this);
     this.renderReviews = this.renderReviews.bind(this);
     this.setFormDataAsState = this.setFormDataAsState.bind(this);
+    this.sendReview = this.sendReview.bind(this);
   }
-  
+
   componentDidMount() {
     this.props.getAcademyDetails(this.props.match.params.academy_id);
   }
@@ -22,8 +25,8 @@ class Academy extends Component {
   renderAcademyDetails() {
     const {name, image, category, courses, description, homepage_adress, rate, reviews} = this.props.academyDetails.data;
     function renderCourses() {
-      return courses.map(course => {
-        return <li>코스명: {course.name} | 소개: {course.description}</li>
+      return courses.map((course, index) => {
+        return <li key={index}>코스명: {course.name} | 소개: {course.description}</li>
       })
     }
 
@@ -70,9 +73,9 @@ class Academy extends Component {
 
     return reviews.map(review => {
       return (
-        <div className="reviewWrapper">
+        <div className="reviewWrapper" key={review._id}>
           <div className="nameRateWrapper">
-            <div className="user_name">{review.user_name}/</div>
+            <div className="nick_name">{review.nick_name}/</div>
             <div className="rate">{review.rate}점</div>
           </div>
           <div className="text">{review.text}</div>
@@ -87,6 +90,8 @@ class Academy extends Component {
       <div className="formWrapper">
         <form onSubmit={this.sendReview} onChange={this.setFormDataAsState}>
           <div>
+            <span>닉네임</span>
+            <input name='nickName' className="nickNameInput" type="text"/>
             <span>나의 점수는?</span>
             <select name='rate' placeholder="5점만점에..">
               <option>-</option>
@@ -108,8 +113,8 @@ class Academy extends Component {
   setFormDataAsState(e) {
     const target = e.target;
 
-    console.log('this.state.review_rate: ', this.state.review_rate)
-    console.log('this.state.review_text: ', this.state.review_text)
+    console.log('this.state.review_rate: ', this.state.review_rate);
+    console.log('this.state.review_text: ', this.state.review_text);
     if (target.name === 'rate') {
       this.setState(state => ({
         review_rate: target.value
@@ -118,31 +123,36 @@ class Academy extends Component {
       this.setState(state => ({
         review_text: target.value
       }));
+    } else if (target.name === 'nickName') {
+      this.setState(state => ({
+        nick_name: target.value
+      }));
     }
   }
 
   sendReview(e) {
     e.preventDefault();
 
-    if (this.accessToken
+    if (this.props.accessToken
       && this.state.review_rate !== '-'
       && this.state.review_rate !== ''
     ) {
       const newReviewData = {
-        access_token: this.accessToken,
-        text: this.review_text,
-        rate: this.review_rate
-      }
+        access_token: this.props.accessToken,
+        text: this.state.review_text,
+        rate: this.state.review_rate,
+        nick_name: this.state.nick_name
+      };
 
-      axios.post(`/academies/${this.props.match.params.academy_id}/review`)
+      axios.post(`/api/academies/${this.props.match.params.academy_id}/review`, {
+        newReviewData
+      });
     } else {
-      alert('로그인이 필요한 기능입니다 ;)')
+      alert('로그인이 필요한 기능입니다 ;)');
     }
   }
 
   render() {
-    console.log('academy_details: ', this.props.academyDetails);
-    console.log('isReviewsShownUp: ', this.props)
     return (
       <Fragment>
         <div className="academyImageBenner"></div>
