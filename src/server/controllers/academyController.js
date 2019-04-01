@@ -1,8 +1,8 @@
 const Academy = require('../models/academies.js');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const credentials = require('../config/credentials.js');
-const httpHeaders = require('http-headers');
+// const httpHeaders = require('http-headers');
 const fileUploader = require('../services/file-upload.js');
 const mongoose = require('mongoose');
 
@@ -26,7 +26,7 @@ const registerAcademy = function (req, res, next) {
 
   res.locals.fileId = _id;
   res.locals.fileCategory = 'academy_image';
-  res.locals.fileDirectory = 'academy_profile_images'
+  res.locals.fileDirectory = 'academy_profile_images';
 
   fileUploader.uploadAcademyImages(req, res, async function (err) {
     if (err) {
@@ -72,7 +72,7 @@ const registerReview = async function (req, res, next) {
   const ObjectId = mongoose.Types.ObjectId;
   const { access_token, text, rate, nick_name } = req.body.newReviewData;
   const dateObj = new Date();
-  const currentTime = `${dateObj.getYear() + 1900}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`
+  const currentTime = `${dateObj.getYear() + 1900}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
   const decoded = jwt.verify(access_token, credentials.JWT_SECRET_KEY);
 
   const newReview = {
@@ -82,7 +82,7 @@ const registerReview = async function (req, res, next) {
     text,
     date: currentTime,
     rate
-  }
+  };
   try {
     await Academy.findByIdAndUpdate(ObjectId(req.params.academy_id), {
       $push: {

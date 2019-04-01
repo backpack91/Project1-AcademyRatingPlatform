@@ -11,7 +11,7 @@ const uploadFile = function (req, res) {
   } catch(err) {
     next(err);
   }
-}
+};
 
 module.exports = {
   uploadFile

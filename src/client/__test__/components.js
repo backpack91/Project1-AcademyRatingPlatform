@@ -41,7 +41,6 @@ describe('note header component', () => {
 
   it('on log out header should have 2 navs and should invoke each eventHandler when clicked', () => {
     const { component, props } = setup(false);
-    console.log('props: ', props);
     expect(component.find('.nav')).toHaveLength(2);
     component.find('.nav').forEach((node, index) => {
       node.simulate('click');
