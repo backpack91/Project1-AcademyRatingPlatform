@@ -38,9 +38,7 @@ npm start
 
 ## **Skills**
 
-------
-
-## **1.FrontEnd-Side**
+### **1.Frontend-Side**
 
 - ###### Modern Javascript(ES2015+)
 
@@ -52,7 +50,7 @@ npm start
 
 - HTTP Client 라이브러리는 Axios 사용
 
-## **2.BackEnd-Side**
+### **2.Backend-Side**
 
 - Modern Javascript(ES2015+)
 - Firebase Social Login
