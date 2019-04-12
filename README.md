@@ -5,7 +5,6 @@
 **원장님 귀는 당나귀 귀**는 학원 결제 영수증 제출을 통해 실제 수강생임을 인증하여 익명으로 후기를 남길 수 있는 학원 후기 공유 플랫폼 입니다.
 
 
-
 ## **Requirements**
 
 - Facebook 가입이 선행되어야 합니다.
@@ -21,7 +20,9 @@
 - 학원 상세 페이지
 - 학원 상세 페이지 내 후기 등록
 
-
+![](gif/wondanggui_academyDetail.gif)
+![](gif/wondanggui_login.gif)
+![](gif/wondanggui_signin.gif)
 
 ## **Installation**
 
