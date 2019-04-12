@@ -20,12 +20,11 @@
 - 학원 상세 페이지
 - 학원 상세 페이지 내 후기 등록
 
+(Sign in)
+![](gif/wondanggui_signin.gif)
 
 (Log in)
 ![](gif/wondanggui_login.gif)
-
-(Sign in)
-![](gif/wondanggui_signin.gif)
 
 (Academy detail page)
 ![](gif/wondanggui_academyDetail.gif)
