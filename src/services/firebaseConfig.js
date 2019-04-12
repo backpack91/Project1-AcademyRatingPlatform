@@ -13,7 +13,6 @@ import 'firebase/auth';
 
   var provider = new firebase.auth.FacebookAuthProvider();
 
-  provider.addScope('user_birthday');
   firebase.auth().languageCode = 'en';
 
   provider.setCustomParameters({
