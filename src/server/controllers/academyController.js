@@ -1,20 +1,14 @@
 const Academy = require('../models/academies.js');
-// const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const credentials = require('../config/credentials.js');
-// const httpHeaders = require('http-headers');
 const fileUploader = require('../services/file-upload.js');
 const mongoose = require('mongoose');
 
 const listUpAcademies  = async function (req, res, next) {
-  const findWithQuery = {};
   try {
-    if (req.query.q) {
-      findWithQuery['name'] = req.query.q;
-    }
+    const academies = await Academy.find({});
 
-    const docs = await Academy.find(findWithQuery);
-    res.json(docs);
+    res.json(academies);
   } catch(err) {
     next(err);
   }

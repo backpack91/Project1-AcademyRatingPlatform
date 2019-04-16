@@ -6,7 +6,9 @@ import {
   ACADEMY_DETAILS,
   TOGGLING_REVIEWS,
   TOGGLING_REVIEW_INPUT,
-  TOGGLING_ACCOUNT_MENU
+  TOGGLING_ACCOUNT_MENU,
+  ADDING_NEW_REVIEW,
+  ACADEMY_DETAILS_PAGE_INITIALIZATION
 } from '../constants/actionTypes';
 import {
   CLOSE_MODAL,
@@ -134,5 +136,18 @@ export function togglingReviewInput() {
 export function togglingAccountMenu() {
   return {
     type: TOGGLING_ACCOUNT_MENU
+  };
+}
+
+export function addingNewReview(review) {
+  return {
+    type: ADDING_NEW_REVIEW,
+    review
+  };
+}
+
+export function academyDetailsPageInitialization() {
+  return {
+    type: ACADEMY_DETAILS_PAGE_INITIALIZATION
   };
 }

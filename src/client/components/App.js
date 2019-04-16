@@ -176,6 +176,8 @@ class App extends Component {
             render={() => (
               <AcademyList
                 academyList={this.props.appState.currentList}
+                initializeAcademyDetailsPageState={this.props.appState.initializeAcademyDetailsPageState}
+                getAcademyList={this.props.appState.getAcademyList}
               />
             )}
           />
@@ -190,6 +192,7 @@ class App extends Component {
                 toggleReviewInput={this.props.appState.toggleReviewInput}
                 isReviewInputShownUp={this.props.appState.isReviewInputShownUp}
                 accessToken={this.props.appState.access_token}
+                addAcademyReview={this.props.appState.addAcademyReview}
               />
             )}
           />

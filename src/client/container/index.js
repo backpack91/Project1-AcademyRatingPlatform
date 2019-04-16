@@ -4,7 +4,6 @@ import App from '../components/App.js';
 import axios from 'axios';
 import credentials from '../config/credentials.js';
 import jwt from 'jsonwebtoken';
-
 import {
   userLogin,
   userLogout,
@@ -23,14 +22,14 @@ import {
   academyDetails,
   togglingReviews,
   togglingReviewInput,
-  togglingAccountMenu
+  togglingAccountMenu,
+  addingNewReview,
+  academyDetailsPageInitialization
 } from '../actions';
 
 class AppContainer extends Component {
   componentDidMount() {
     const access_token = localStorage.getItem('access_token');
-
-    this.props.onMount();
 
     if (access_token) {
       const decoded = jwt.verify(access_token, credentials.JWT_SECRET_KEY);
@@ -68,7 +67,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onMount: () => {
+    getAcademyList: () => {
       axios.get('api/academies')
       .then(res => {
         dispatch(feedList(res));
@@ -80,11 +79,17 @@ const mapDispatchToProps = (dispatch) => {
     getAcademyDetails: (academy_id) => {
       axios.get(`/api/academies/${academy_id}`)
       .then(res => {
-        dispatch(academyDetails(res))
+        dispatch(academyDetails(res));
       })
       .catch(err => {
         console.log('err: ', err);
       });
+    },
+    addAcademyReview: (review) => {
+      dispatch(addingNewReview(review));
+    },
+    initializeAcademyDetailsPageState: () => {
+      dispatch(academyDetailsPageInitialization());
     },
     showUpLoginForm: () => {
       dispatch(showUpLoginForm());

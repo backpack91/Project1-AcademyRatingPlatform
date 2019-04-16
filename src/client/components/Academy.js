@@ -52,7 +52,7 @@ class Academy extends Component {
                   <div className="reviewTitle">Reviews</div>
                   <div className="writingBtnWrapper" onClick={this.props.toggleReviewInput}>
                     <span>후기쓰기..</span>
-                    <i className="fas fa-pen-nib"></i>
+                    <i className="fa s fa-pen-nib"></i>
                   </div>
                 </div>
               : null}
@@ -113,8 +113,6 @@ class Academy extends Component {
   setFormDataAsState(e) {
     const target = e.target;
 
-    console.log('this.state.review_rate: ', this.state.review_rate);
-    console.log('this.state.review_text: ', this.state.review_text);
     if (target.name === 'rate') {
       this.setState(state => ({
         review_rate: target.value
@@ -146,6 +144,10 @@ class Academy extends Component {
 
       axios.post(`/api/academies/${this.props.match.params.academy_id}/review`, {
         newReviewData
+      })
+      .then(res => {
+        this.props.toggleReviewInput();
+        this.props.addAcademyReview(newReviewData);
       });
     } else {
       alert('로그인이 필요한 기능입니다 ;)');
@@ -157,7 +159,7 @@ class Academy extends Component {
       <Fragment>
         <div className="academyImageBenner"></div>
         <div className="academyDetailsWrapper">
-          {this.props.academyDetails ? this.renderAcademyDetails() : null}
+          {this.props.academyDetails.data ? this.renderAcademyDetails() : null}
           <i className="far fa-comment" onClick={this.props.toggleReview}></i>
         </div>
       </Fragment>

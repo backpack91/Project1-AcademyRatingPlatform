@@ -9,6 +9,11 @@ class AcademyList extends Component {
     this.renderList = this.renderList.bind(this);
   }
 
+  componentDidMount() {
+    this.props.initializeAcademyDetailsPageState();
+    this.props.getAcademyList();
+  }
+
   renderList () {
     return this.props.academyList.map(item => {
       const image = {

@@ -17,8 +17,11 @@ import {
   ACADEMY_DETAILS,
   TOGGLING_REVIEWS,
   TOGGLING_REVIEW_INPUT,
-  TOGGLING_ACCOUNT_MENU
+  TOGGLING_ACCOUNT_MENU,
+  ADDING_NEW_REVIEW,
+  ACADEMY_DETAILS_PAGE_INITIALIZATION
 } from '../constants/actionTypes.js';
+import * as _ from 'lodash';
 
 const initialStates = {
   onLogin: false,
@@ -28,10 +31,14 @@ const initialStates = {
   modalTitle: '',
   currentList: {},
   isReviewsShownUp: false,
-  isAccountMenuShownUp: false
+  isReviewInputShownUp: false,
+  isAccountMenuShownUp: false,
+  academyDetails: {}
 };
 
 export default function reducer (state = initialStates, action) {
+  let academyDetailsClone;
+
   switch (action.type) {
     case SHOW_UP_LOGIN_FORM:
       return {
@@ -128,9 +135,13 @@ export default function reducer (state = initialStates, action) {
       };
 
     case ACADEMY_DETAILS:
+      academyDetailsClone = _.cloneDeep(action.payload);
+      academyDetailsClone.data.reviews.reverse();
+
       return {
         ...state,
-        academyDetails: action.payload
+        // academyDetails: action.payload
+        academyDetails: academyDetailsClone
       };
 
     case TOGGLING_REVIEWS:
@@ -171,6 +182,22 @@ export default function reducer (state = initialStates, action) {
           isAccountMenuShownUp: true
         };
       }
+
+    case ADDING_NEW_REVIEW:
+      academyDetailsClone = _.cloneDeep(state.academyDetails);
+      academyDetailsClone.data.reviews.unshift(action.review);
+
+      return {
+        ...state,
+        academyDetails: academyDetailsClone
+      };
+
+    case ACADEMY_DETAILS_PAGE_INITIALIZATION:
+      return  {
+        ...state,
+        isReviewsShownUp: false,
+        isReviewInputShownUp: false
+      };
 
     default:
       return state;
