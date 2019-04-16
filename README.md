@@ -23,9 +23,6 @@
 (Sign in)
 ![](gif/wondanggui_signin.gif)
 
-(Log in)
-![](gif/wondanggui_login.gif)
-
 (Academy detail page)
 ![](gif/wondanggui_academyDetail.gif)
 
