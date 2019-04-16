@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import App from '../components/App.js';
 import axios from 'axios';
-import credentials from '../../server/config/credentials.js';
+import credentials from '../config/credentials.js';
 import jwt from 'jsonwebtoken';
 
 import {
